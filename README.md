@@ -1,6 +1,6 @@
 # The ModeShape project
 
-ModeShape is an open source implementation of the JCR 2.0 ([JSR-283](http://www.jcp.org/en/jsr/detail?id=283])) specification and standard API.
+ModeShape is an open source implementation of the JCR 2.0 ([JSR-283](http://www.jcp.org/en/jsr/detail?id=283])) (aka, 'JCR') specification and standard API.
 To your applications, ModeShape looks and behaves like a regular JCR repository. Applications can search, query, navigate, change, version, listen for changes, etc.
 But ModeShape can store that content in a variety of back-end stores (including relational databases, Infinispan data grids, JBoss Cache, etc.), or it can
 access and update existing content from *other* kinds of systems (including file systems, SVN repositories, JDBC database metadata, and other JCR repositories).
@@ -38,3 +38,23 @@ See [this ModeShape community article](http://community.jboss.org/wiki/ModeShape
 
 ModeShape is open source software with a dedicated community. If you have any questions or problems, post a question in our 
 [user forum](http://community.jboss.org/en/modeshape) or hop into our [IRC chat room](http://www.jboss.org/modeshape/chat) and talk our community of contributors and users.
+
+# Contribute an example
+
+We're always looking for good, easy to follow examples. If you've written one and would like to help, simply use GitHub's Fork and Pull-Request techniques.
+
+1. Use the "Fork" button at the top of [this page](https://github.com/ModeShape/modeshape-examples) on GitHub to create your own fork.
+2. Clone your fork:
+    $ git clone git@github.com:<you>/modeshape-examples.git
+    $ cd modeshape-examples
+    $ git remote add upstream git://github.com/ModeShape/modeshape-examples.git
+3. Create a topic branch
+    $ git checkout -b <branch-name>
+4. Make your changes
+5. When all of the examples (including yours) build, commit to that branch
+    $ git commit .
+6. Push your commit(s) to your fork on GitHub
+    $ git push origin <branch-name>
+7. On GitHub.com, go to your fork and switch branches to your topic branch, press the 'Pull Request' button, and fill out the form with the details.
+
+We'll then review your submission and, if it works and builds, merge it into the examples repository.
