@@ -18,14 +18,14 @@ public class ModeShapeExample {
 		JcrConfiguration config = new JcrConfiguration();
         try {
             URL url = ModeShapeExample.class.getClassLoader().getResource("modeshape-config.xml");       
-		    config.loadFrom(url);
+		        config.loadFrom(url);
         } catch ( SAXException e ) {
             System.err.println("Failed to read the configuration file");
         } catch ( IOException e ) {
             System.err.println("Failed to load the configuration file");
         }
 		
-		// Create and start the engine ...
+		    // Create and start the engine ...
         JcrEngine engine = config.build();
         if ( engine.getProblems().hasErrors() ) {
             System.err.println("Problems starting the engine.");
@@ -42,7 +42,7 @@ public class ModeShapeExample {
 	        // Get the repository
             repository = engine.getRepository("My repository");
 
-		    // Create a session ...
+		        // Create a session ...
             session = repository.login("default");
 
             // Get the root node ...
