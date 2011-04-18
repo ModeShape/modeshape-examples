@@ -9,13 +9,13 @@ into a single, unified virtual repository.
 
 For more information on ModeShape, including getting started guides, reference guides, and downloadable binaries, visit the project's website at [http://www.modeshape.org]()
 or follow us on our [blog](http://modeshape.wordpress.org) or on [Twitter](http://twitter.com/modeshape). Or hop into our [IRC chat room](http://www.jboss.org/modeshape/chat)
-and talk our community of contributors and users. 
+and talk our community of contributors and users.
 
 The official Git repository for the project is also on GitHub at [http://github.com/ModeShape/modeshape]().
 
 # Examples
 
-This Git repository contains a number of examples showing how to use ModeShape within your applications. Each example is a self-contained Maven project
+This Git repository contains examples showing how to use ModeShape within your applications. Each example is a self-contained Maven project
 that is ready to use.
 
 To run the examples, simply clone the repository:
@@ -33,12 +33,6 @@ or you can build an individual example. For instance:
     $ mvn clean install
 
 See [this ModeShape community article](http://community.jboss.org/wiki/ModeShapeandMaven) for help on how to install Maven 3.
-
-Here are the examples:
-
-1. 'modeshape-embedded-example' - a very simple application that uses Maven 3 for its build system and that shows how to embed ModeShape into the application
-1. 'modeshape-sequencer-example' - a very simple command-line application that demonstrates the use of sequencers to extract information from uploaded files
-1. 'modeshape-repository-example' - a very simple command-line application that demonstrates the use of repositories and various connectors configurations (including federation)
 
 # Need help?
 
