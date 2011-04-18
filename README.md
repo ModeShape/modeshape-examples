@@ -50,18 +50,22 @@ We're always looking for good, easy to follow examples. If you've written one an
     $ cd modeshape-examples
     $ git remote add upstream git://github.com/ModeShape/modeshape-examples.git
 
+
 3. Create a topic branch
 
     $ git checkout -b <branch-name>
+
 
 4. Make your changes
 5. When all of the examples (including yours) build, commit to that branch
 
     $ git commit .
 
+
 6. Push your commit(s) to your fork on GitHub
 
     $ git push origin <branch-name>
+
 
 7. On GitHub.com, go to your fork and switch branches to your topic branch, press the 'Pull Request' button, and fill out the form with the details.
 
