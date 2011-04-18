@@ -1,7 +1,7 @@
 # ModeShape Embedded Example
 
 This is a self-contained Maven project that shows how to embed ModeShape within a simple J2SE application. The 
-[ModeShapeExample](src/main/java/org/modeshape/example/embedded/ModeShapeExample.java) class has a 'main(...)' method
+[ModeShapeExample](modeshape-embedded-example/src/main/java/org/modeshape/example/embedded/ModeShapeExample.java) class has a 'main(...)' method
 that loads a ModeShape configuration as a resource on the classpath, uses that configuration to build a 
 ModeShape JcrEngine instance, starts the engine, and obtains a JCR Session to the repository.
 
