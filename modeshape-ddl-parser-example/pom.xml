@@ -138,12 +138,6 @@
 			<version>${modeshape.version}</version>
 			<scope>compile</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.modeshape</groupId>
-			<artifactId>modeshape-common</artifactId>
-			<version>${modeshape.version}</version>
-			<scope>compile</scope>
-		</dependency>
 		<!-- Logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
