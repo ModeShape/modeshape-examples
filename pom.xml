@@ -15,5 +15,6 @@
   </scm>
   <modules>
     <module>modeshape-embedded-example</module>
+    <module>modeshape-ddl-parser-example</module>
   </modules>
 </project>
