@@ -13,10 +13,10 @@
 		<!--
 		Global dependency version information
 		-->
-		<modeshape.version>2.6.0.Beta2</modeshape.version>
+		<modeshape.version>2.6.0.Final</modeshape.version>
 		<jcr.version>2.0</jcr.version>
-		<slf4j.api.version>1.5.11</slf4j.api.version>
-		<slf4j.log4j.version>1.5.11</slf4j.log4j.version>
+		<slf4j.api.version>1.6.1</slf4j.api.version>
+		<slf4j.log4j.version>1.6.1</slf4j.log4j.version>
 		<log4j.version>1.2.16</log4j.version>
 		<junit.version>4.8.2</junit.version>
 		<!--
