@@ -4,8 +4,8 @@
 	<groupId>org.modeshape.example</groupId>
 	<artifactId>modeshape-embedded-example</artifactId>
 	<packaging>jar</packaging>
-	<name>ModeShape Demo App</name>
-	<description>A simple demo application that creates an embedded ModeShape engine.</description>
+	<name>ModeShape Embedded Repository Example</name>
+	<description>A simple example application that creates an embedded ModeShape engine.</description>
 	<version>1.0-SNAPSHOT</version>
 	<properties>
 		<!-- Instruct the build to use only UTF-8 encoding for source code -->
@@ -13,7 +13,7 @@
 		<!--
 		Global dependency version information
 		-->
-		<modeshape.version>2.7.0.Final</modeshape.version>
+		<modeshape.version>3.0.0.Alpha1</modeshape.version>
 		<jcr.version>2.0</jcr.version>
 		<slf4j.api.version>1.6.1</slf4j.api.version>
 		<slf4j.log4j.version>1.6.1</slf4j.log4j.version>
@@ -31,6 +31,46 @@
 		<maven.source.plugin.version>2.1.2</maven.source.plugin.version>
 		<maven.resources.plugin.version>2.4.3</maven.resources.plugin.version>
 	</properties>
+    <dependencies>
+        <dependency>
+            <groupId>javax.jcr</groupId>
+            <artifactId>jcr</artifactId>
+            <version>${jcr.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.modeshape</groupId>
+            <artifactId>modeshape-jcr</artifactId>
+            <version>${modeshape.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <!-- Logging -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.api.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j.log4j.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4j.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <!-- Testing (note the scope) -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 	<build>
 		<resources>
 			<resource>
@@ -125,60 +165,6 @@
 			</plugin>
 		</plugins>
 	</build>
-	<dependencies>
-		<dependency>
-			<groupId>javax.jcr</groupId>
-			<artifactId>jcr</artifactId>
-			<version>${jcr.version}</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.modeshape</groupId>
-			<artifactId>modeshape-jcr</artifactId>
-			<version>${modeshape.version}</version>
-			<scope>compile</scope>
-		</dependency>
-		<!-- Connectors (all optional) -->
-		<dependency>
-			<groupId>org.modeshape</groupId>
-			<artifactId>modeshape-connector-filesystem</artifactId>
-			<version>${modeshape.version}</version>
-			<scope>compile</scope>
-		</dependency>
-		<!-- Sequencers (all optional) -->
-		<dependency>
-			<groupId>org.modeshape</groupId>
-			<artifactId>modeshape-sequencer-cnd</artifactId>
-			<version>${modeshape.version}</version>
-			<scope>compile</scope>
-		</dependency>
-		<!-- Logging -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>${slf4j.api.version}</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>${slf4j.log4j.version}</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>${log4j.version}</version>
-			<scope>compile</scope>
-		</dependency>
-		<!-- Testing (note the scope) -->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>${junit.version}</version>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
 	<repositories>
 		<repository>
 			<id>JBoss-Releases</id>

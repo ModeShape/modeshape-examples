@@ -1,46 +1,53 @@
 package org.modeshape.example.embedded;
 
-import java.io.IOException;
 import java.net.URL;
 import javax.jcr.Node;
 import javax.jcr.Repository;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
-import org.modeshape.jcr.JcrConfiguration;
+import org.modeshape.common.collection.Problems;
 import org.modeshape.jcr.JcrEngine;
-import org.xml.sax.SAXException;
+import org.modeshape.jcr.RepositoryConfiguration;
 
 public class ModeShapeExample {
 
     public static void main( String[] argv ) {
 
-        // Load the configuration via the classloader (can also use path to a file)...
-        JcrConfiguration config = new JcrConfiguration();
-        try {
-            URL url = ModeShapeExample.class.getClassLoader().getResource("modeshape-config.xml");
-            config.loadFrom(url);
-        } catch (SAXException e) {
-            System.err.println("Failed to read the configuration file");
-        } catch (IOException e) {
-            System.err.println("Failed to load the configuration file");
-        }
-
         // Create and start the engine ...
-        JcrEngine engine = config.build();
-        if (engine.getProblems().hasErrors()) {
-            System.err.println("Problems starting the engine.");
-            System.err.println(engine.getProblems());
-            System.exit(-1);
-        }
-
-        // Start the engine
+        JcrEngine engine = new JcrEngine();
         engine.start();
 
+        // Load the configuration for a repository via the classloader (can also use path to a file)...
         Repository repository = null;
+        String repositoryName = null;
+        try {
+            URL url = ModeShapeExample.class.getClassLoader().getResource("my-repository-config.json");
+            RepositoryConfiguration config = RepositoryConfiguration.read(url);
+
+            // We could change the name of the repository programmatically ...
+            // config = config.withName("Some Other Repository");
+
+            // Verify the configuration for the repository ...
+            Problems problems = config.validate();
+            if (problems.hasErrors()) {
+                System.err.println("Problems starting the engine.");
+                System.err.println(problems);
+                System.exit(-1);
+            }
+
+            // Deploy the repository ...
+            repository = engine.deploy(config);
+            repositoryName = config.getName();
+        } catch (Throwable e) {
+            e.printStackTrace();
+            System.exit(-1);
+            return;
+        }
+
         Session session = null;
         try {
             // Get the repository
-            repository = engine.getRepository("My repository");
+            repository = engine.getRepository(repositoryName);
 
             // Create a session ...
             session = repository.login("default");
@@ -51,10 +58,16 @@ public class ModeShapeExample {
 
             System.out.println("Found the root node in the \"" + session.getWorkspace().getName() + "\" workspace");
         } catch (RepositoryException e) {
-            System.err.println("Failed to load the configuration file");
+            e.printStackTrace();
         } finally {
             if (session != null) session.logout();
-            engine.shutdown();
+            System.out.println("Shutting down engine ...");
+            try {
+                engine.shutdown().get();
+                System.out.println("Success!");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
     }

@@ -20,13 +20,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import org.modeshape.graph.ExecutionContext;
-import org.modeshape.graph.JcrLexicon;
-import org.modeshape.graph.property.Name;
-import org.modeshape.graph.property.NamespaceRegistry;
-import org.modeshape.graph.property.Property;
 import org.modeshape.sequencer.ddl.DdlParsers;
 import org.modeshape.sequencer.ddl.StandardDdlLexicon;
 import org.modeshape.sequencer.ddl.node.AstNode;
@@ -56,48 +52,48 @@ import org.modeshape.sequencer.ddl.node.AstNode;
  */
 public class Parser {
 
-    // public static void main( String[] argv ) {
-    // // Process the arguments ...
-    // String filename = null;
-    // for (String arg : argv) {
-    // // First non-flag parameter is the filename ...
-    // if (filename == null) filename = arg;
-    // }
-    //
-    // // Figure out if the arguments are valid ...
-    // if (filename == null) {
-    // printUsage(System.out);
-    // System.exit(1);
-    // }
-    // File file = new File(filename);
-    // if (!file.exists()) printError(-1, "The file \"" + filename + "\" does not exist.");
-    // if (!file.isFile()) printError(-2, "File could not be found at \"" + file + "\"");
-    // if (!file.canRead()) printError(-3, "Unable to read file \"" + filename + "\".");
-    //
-    // // Now parse the file ...
-    // try {
-    // Parser parser = new Parser();
-    // parser.parse(file);
-    // } catch (Throwable t) {
-    // printError(-10, t.getMessage());
-    // }
-    // }
-    //
-    // protected static void printError( int exitCode,
-    // String message ) {
-    // System.err.println("Error: " + message);
-    // System.err.println();
-    // printUsage(System.out);
-    // System.exit(exitCode);
-    // }
-    //
-    // protected static void printUsage( PrintStream stream ) {
-    // stream.println("Usage:   " + Parser.class.getCanonicalName() + " filename");
-    // stream.println();
-    // stream.println("   where");
-    // stream.println("     filename         is the name of the DDL file to be parsed");
-    // stream.println();
-    // }
+    public static void main( String[] argv ) {
+        // Process the arguments ...
+        String filename = null;
+        for (String arg : argv) {
+            // First non-flag parameter is the filename ...
+            if (filename == null) filename = arg;
+        }
+
+        // Figure out if the arguments are valid ...
+        if (filename == null) {
+            printUsage(System.out);
+            System.exit(1);
+        }
+        File file = new File(filename);
+        if (!file.exists()) printError(-1, "The file \"" + filename + "\" does not exist.");
+        if (!file.isFile()) printError(-2, "File could not be found at \"" + file + "\"");
+        if (!file.canRead()) printError(-3, "Unable to read file \"" + filename + "\".");
+
+        // Now parse the file ...
+        try {
+            Parser parser = new Parser();
+            parser.parse(file);
+        } catch (Throwable t) {
+            printError(-10, t.getMessage());
+        }
+    }
+
+    protected static void printError( int exitCode,
+                                      String message ) {
+        System.err.println("Error: " + message);
+        System.err.println();
+        printUsage(System.out);
+        System.exit(exitCode);
+    }
+
+    protected static void printUsage( PrintStream stream ) {
+        stream.println("Usage:   " + Parser.class.getCanonicalName() + " filename");
+        stream.println();
+        stream.println("   where");
+        stream.println("     filename         is the name of the DDL file to be parsed");
+        stream.println();
+    }
 
     protected static String readFile( File file ) throws IOException {
         StringBuffer fileData = new StringBuffer(1000);
@@ -116,20 +112,7 @@ public class Parser {
         }
     }
 
-    protected ExecutionContext context = new ExecutionContext();
     protected boolean print = true;
-
-    public Parser() {
-        NamespaceRegistry registry = context.getNamespaceRegistry();
-        registry.register("ddl", "http://www.modeshape.org/ddl/1.0");
-        registry.register("postgres", "http://www.modeshape.org/ddl/postgres/1.0");
-        registry.register("oracle", "http://www.modeshape.org/ddl/oracle/1.0");
-        registry.register("mysql", "http://www.modeshape.org/ddl/mysql/1.0");
-        registry.register("derby", "http://www.modeshape.org/ddl/derby/1.0");
-        registry.register("sqlserver", "http://www.modeshape.org/ddl/sqlserver/1.0");
-        registry.register("sybase", "http://www.modeshape.org/ddl/sybase/1.0");
-        registry.register("db2", "http://www.modeshape.org/ddl/db2/1.0");
-    }
 
     public Database parse( File file ) throws IOException {
         // Read the file into a single string ...
@@ -140,7 +123,7 @@ public class Parser {
         AstNode node = parsers.parse(ddl, file.getName());
 
         // Now process the AST ...
-        System.out.println(node.getString(context));
+        System.out.println(node.toString());
         return processStatements(node);
     }
 
@@ -154,7 +137,7 @@ public class Parser {
         assert node.getName().equals(StandardDdlLexicon.STATEMENTS_CONTAINER);
 
         // Get the dialect that we've inferred ...
-        String dialectId = string(node.getProperty(StandardDdlLexicon.PARSER_ID).getFirstValue());
+        String dialectId = string(node.getProperty(StandardDdlLexicon.PARSER_ID));
 
         // Now process the children of the statements node ...
         Database database = new Database(dialectId);
@@ -171,7 +154,7 @@ public class Parser {
 
     protected void process( AstNode node,
                             NamedComponent parent ) {
-        Name mixin = name(node.getProperty(JcrLexicon.MIXIN_TYPES).getFirstValue());
+        String mixin = string(node.getProperty("jcr:mixinTypes"));
 
         // There are lots of different types of AST nodes, but we're only going to process a few ...
 
@@ -234,8 +217,8 @@ public class Parser {
         print("Create view \"" + name + "\"");
         View view = parent.getView(name, true);
 
-        Property prop = node.getProperty(DDL_EXPRESSION);
-        if (prop != null) view.expression = string(prop.getFirstValue());
+        Object prop = node.getProperty(DDL_EXPRESSION);
+        if (prop != null) view.expression = string(prop);
 
         processChildrenOf(node, view);
     }
@@ -253,20 +236,20 @@ public class Parser {
         print("Column column \"" + name + "\"");
         Column column = parent.getColumn(name, true);
 
-        Property prop = node.getProperty(DATATYPE_LENGTH);
-        if (prop != null) column.length = (int)number(prop.getFirstValue());
+        Object prop = node.getProperty(DATATYPE_LENGTH);
+        if (prop != null) column.length = (int)number(prop);
 
         prop = node.getProperty(DATATYPE_NAME);
-        if (prop != null) column.datatypeName = string(prop.getFirstValue());
+        if (prop != null) column.datatypeName = string(prop);
 
         prop = node.getProperty(DATATYPE_PRECISION);
-        if (prop != null) column.precision = (int)number(prop.getFirstValue());
+        if (prop != null) column.precision = (int)number(prop);
 
         prop = node.getProperty(DATATYPE_SCALE);
-        if (prop != null) column.scale = (int)number(prop.getFirstValue());
+        if (prop != null) column.scale = (int)number(prop);
 
         prop = node.getProperty(DEFAULT_VALUE);
-        if (prop != null) column.defaultValue = string(prop.getFirstValue());
+        if (prop != null) column.defaultValue = string(prop);
     }
 
     /**
@@ -278,15 +261,11 @@ public class Parser {
      * @return the string representation of the value, or null if the value was null
      */
     protected String string( Object value ) {
-        return context.getValueFactories().getStringFactory().create(value);
-    }
-
-    protected Name name( Object value ) {
-        return context.getValueFactories().getNameFactory().create(value);
+        return value == null ? null : value.toString();
     }
 
     protected long number( Object value ) {
-        return context.getValueFactories().getLongFactory().create(value);
+        return value == null ? null : (Long)value;
     }
 
     protected void print( String message ) {
