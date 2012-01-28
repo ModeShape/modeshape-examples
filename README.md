@@ -34,6 +34,14 @@ or you can build an individual example. For instance:
 
 See [this ModeShape community article](http://community.jboss.org/wiki/ModeShapeandMaven) for help on how to install Maven 3.
 
+# Looking for ModeShape 2.x examples?
+
+The code on the 'master' branch works against the latest ModeShape 3.0 release, but a different branch contains the examples for use with ModeShape 2.x. To get to those, use the Git `checkout` command to switch branches:
+
+    $ git checkout 2.x
+    
+and then use the Maven command to build the examples (same as above).
+
 # Need help?
 
 ModeShape is open source software with a dedicated community. If you have any questions or problems, post a question in our 
