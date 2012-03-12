@@ -13,7 +13,7 @@
 		<!--
 		Global dependency version information
 		-->
-		<modeshape.version>3.0.0.Alpha1</modeshape.version>
+		<modeshape.version>3.0.0.Alpha2</modeshape.version>
 		<jcr.version>2.0</jcr.version>
 		<slf4j.api.version>1.6.1</slf4j.api.version>
 		<slf4j.log4j.version>1.6.1</slf4j.log4j.version>

@@ -31,7 +31,7 @@ public class ModeShapeExample {
         Repository repository = null;
         String repositoryName = null;
         try {
-            URL url = ModeShapeExample.class.getClassLoader().getResource("my-repository.json");
+            URL url = ModeShapeExample.class.getClassLoader().getResource("my-repository-config.json");
             RepositoryConfiguration config = RepositoryConfiguration.read(url);
 
             // Verify the configuration for the repository ...
@@ -69,7 +69,7 @@ public class ModeShapeExample {
             tools.uploadFile(session, "/files/caution.png", getFile("caution.png"));
             tools.uploadFile(session, "/files/sample1.mp3", getFile("sample1.mp3"));
             tools.uploadFile(session, "/files/fixedWidthFile.txt", getFile("fixedWidthFile.txt"));
-            tools.uploadFile(session, "/files/JcrRepository.class", getFile("JcrRepository.clazz"));
+            tools.uploadFile(session, "/files/MySource.java", getFile("MySource.java"));
 
             // Save the session ...
             session.save();
@@ -83,7 +83,7 @@ public class ModeShapeExample {
             Node sampleMp3 = findNodeAndWait(session, "/audio/sample1.mp3", 10, TimeUnit.SECONDS);
             if (print) tools.printSubgraph(sampleMp3);
 
-            Node javaClass = findNodeAndWait(session, "/java/JcrRepository.class", 10, TimeUnit.SECONDS);
+            Node javaClass = findNodeAndWait(session, "/java/MySource.java", 10, TimeUnit.SECONDS);
             if (print) tools.printSubgraph(javaClass);
 
             Node textFile = findNodeAndWait(session, "/text/fixedWidthFile.txt", 10, TimeUnit.SECONDS);

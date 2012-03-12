@@ -10,5 +10,42 @@
             "roles" : ["readonly","readwrite","admin"],
             "useOnFailedLogin" : false
         }
+    },
+    "sequencing" : {
+        "removeDerivedContentWithOriginal" : true,
+        "sequencers" : [
+            {
+                "name" : "Delimited text sequencer",
+                "type" : "delimitedtext",
+                "pathExpressions" : [ "default:/files/(*.csv)/jcr:content[@jcr:data] => /text" ],
+                "commentMarker" : "#"
+            },
+            {
+                "name" : "Fixed width text sequencer",
+                "type" : "fixedwidthtext",
+                "pathExpressions" : [ "default:/files/(*.txt)/jcr:content[@jcr:data] => /text"] ,
+                "commentMarker" : "#"
+            },
+            {
+                "name" : "Mp3s in different location",
+                "type" : "org.modeshape.sequencer.mp3.Mp3MetadataSequencer",
+                "pathExpressions" : [ "default://(*.mp3)/jcr:content[@jcr:data] => /audio" ]
+            },
+            {
+                "name" : "Images in separate location",
+                "type" : "ImageSequencer",
+                "pathExpression" : "default://(*.(gif|png|pict|jpg))/jcr:content[@jcr:data] => default:/images"
+            },
+            {
+                "name" : "Classes in different location",
+                "type" : "org.modeshape.sequencer.classfile.ClassFileSequencer",
+                "pathExpressions" : [ "default://(*.class)/jcr:content[@jcr:data] => /classes" ]
+            },
+            {
+                "name" : "Java Sequencer in different location",
+                "type" : "javasourcesequencer",
+                "pathExpressions" : [ "default://(*.java)/jcr:content[@jcr:data] => /java" ]
+            }
+        ]
     }
 }
