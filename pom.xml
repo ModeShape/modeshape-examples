@@ -15,6 +15,7 @@
   </scm>
   <modules>
     <module>modeshape-embedded-example</module>
+    <module>modeshape-custom-logging-example</module>
     <module>modeshape-sequencing-example</module>
     <module>modeshape-ddl-parser-example</module>
   </modules>
