@@ -7,7 +7,7 @@ import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import org.modeshape.common.collection.Problems;
 import org.modeshape.common.logging.Logger;
-import org.modeshape.jcr.JcrEngine;
+import org.modeshape.jcr.ModeShapeEngine;
 import org.modeshape.jcr.RepositoryConfiguration;
 
 public class ModeShapeExample {
@@ -19,7 +19,7 @@ public class ModeShapeExample {
 
         // Create and start the engine ...
         logger.debug("Starting the ModeShape engine ...");
-        JcrEngine engine = new JcrEngine();
+        ModeShapeEngine engine = new ModeShapeEngine();
         engine.start();
 
         // Load the configuration for a repository via the classloader (can also use path to a file)...

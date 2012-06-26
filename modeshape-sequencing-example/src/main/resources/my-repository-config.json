@@ -13,39 +13,33 @@
     },
     "sequencing" : {
         "removeDerivedContentWithOriginal" : true,
-        "sequencers" : [
-            {
-                "name" : "Delimited text sequencer",
-                "type" : "delimitedtext",
+        "sequencers" : {
+            "Delimited text sequencer" : {
+                "classname" : "delimitedtext",
                 "pathExpressions" : [ "default:/files/(*.csv)/jcr:content[@jcr:data] => /text" ],
                 "commentMarker" : "#"
             },
-            {
-                "name" : "Fixed width text sequencer",
-                "type" : "fixedwidthtext",
+            "Fixed width text sequencer" : {
+                "classname" : "fixedwidthtext",
                 "pathExpressions" : [ "default:/files/(*.txt)/jcr:content[@jcr:data] => /text"] ,
                 "commentMarker" : "#"
             },
-            {
-                "name" : "Mp3s in different location",
-                "type" : "org.modeshape.sequencer.mp3.Mp3MetadataSequencer",
+            "Mp3s in different location" : {
+                "classname" : "org.modeshape.sequencer.mp3.Mp3MetadataSequencer",
                 "pathExpressions" : [ "default://(*.mp3)/jcr:content[@jcr:data] => /audio" ]
             },
-            {
-                "name" : "Images in separate location",
-                "type" : "ImageSequencer",
+            "Images in separate location" : {
+                "classname" : "ImageSequencer",
                 "pathExpression" : "default://(*.(gif|png|pict|jpg))/jcr:content[@jcr:data] => default:/images"
             },
-            {
-                "name" : "Classes in different location",
-                "type" : "org.modeshape.sequencer.classfile.ClassFileSequencer",
+            "Classes in different location" : {
+                "classname" : "org.modeshape.sequencer.classfile.ClassFileSequencer",
                 "pathExpressions" : [ "default://(*.class)/jcr:content[@jcr:data] => /classes" ]
             },
-            {
-                "name" : "Java Sequencer in different location",
-                "type" : "javasourcesequencer",
+            "Java Sequencer in different location" : {
+                "classname" : "javasourcesequencer",
                 "pathExpressions" : [ "default://(*.java)/jcr:content[@jcr:data] => /java" ]
             }
-        ]
+        }
     }
 }

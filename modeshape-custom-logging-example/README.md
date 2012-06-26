@@ -49,7 +49,7 @@ The example provides an implementation of the
 sets up ModeShape as normal to run embedded within a simple J2SE application. The 
 [ModeShapeExample](modeshape-custom-logging-example/src/main/java/org/modeshape/example/embedded/ModeShapeExample.java) class has a 'main(...)' method
 that loads a ModeShape configuration as a resource on the classpath, uses that configuration to build a 
-ModeShape JcrEngine instance, starts the engine, and obtains a JCR Session to the repository.
+ModeShapeEngine instance, starts the engine, and obtains a JCR Session to the repository.
 
 This project is self-contained and can be built at the top level of your local clone of the Git repository,
 or by simply building this project using Maven 3:
