@@ -5,7 +5,7 @@
 	<artifactId>modeshape-custom-logging-example</artifactId>
 	<packaging>jar</packaging>
 	<name>ModeShape Repository Example with custom logging</name>
-	<description>A simple self-contained example application that creates an embedded ModeShape engine but uses a custom logging factory to use LogBack logging framework.</description>
+	<description>A simple self-contained example application that creates an embedded ModeShape engine but uses a custom logging framework.</description>
 	<version>1.0-SNAPSHOT</version>
 	<properties>
 		<!-- Instruct the build to use only UTF-8 encoding for source code -->
@@ -13,7 +13,7 @@
 		<!--
 		Global dependency version information
 		-->
-		<modeshape.version>3.0.0.Alpha6</modeshape.version>
+		<modeshape.version>3.0.0.Beta1</modeshape.version>
 		<jcr.version>2.0</jcr.version>
 		<slf4j.api.version>1.6.1</slf4j.api.version>
 		<logback.version>1.0.3</logback.version>

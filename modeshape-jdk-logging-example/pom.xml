@@ -2,10 +2,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.modeshape.example</groupId>
-	<artifactId>modeshape-embedded-example</artifactId>
+	<artifactId>modeshape-jdk-logging-example</artifactId>
 	<packaging>jar</packaging>
-	<name>ModeShape Embedded Repository Example</name>
-	<description>A simple example application that creates an embedded ModeShape engine.</description>
+	<name>ModeShape Repository Example with JDK logging</name>
+	<description>A simple self-contained example application that creates an embedded ModeShape engine but uses the JDK logger.</description>
 	<version>1.0-SNAPSHOT</version>
 	<properties>
 		<!-- Instruct the build to use only UTF-8 encoding for source code -->
@@ -41,7 +41,8 @@
             <version>${modeshape.version}</version>
             <scope>compile</scope>
         </dependency>
-        <!-- We don't specify a logging framework, so ModeShape will use the JDK logger -->
+        <!-- No logging library provided, so ModeShape will use JDK Util Logging -->
+        
         <!-- Testing (note the scope) -->
         <dependency>
             <groupId>junit</groupId>

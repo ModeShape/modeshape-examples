@@ -22,9 +22,10 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package org.modeshape.example.custom.logging;
+package org.modeshape.example.logging.logback;
 
 import org.junit.Test;
+import org.modeshape.example.logging.logback.ModeShapeExample;
 
 public class ModeShapeExampleTest {
 

@@ -25,20 +25,19 @@ package org.modeshape.common.logging;
 
 import org.modeshape.common.i18n.I18nResource;
 import org.modeshape.common.util.StringUtil;
-import org.slf4j.LoggerFactory;
 
 /**
- * A custom {@link Logger} that forwards messages to the Logback logging framework. Note that Logback directly implements the
- * SLF4J API, so this class actually just uses that API.
+ * A very crude but simple example of a custom {@link Logger} that simply writes all log messages (except trace) out to
+ * System.out. This should never be used in production, but is an example of how one can create
  * 
  * @see CustomLoggerFactory
  */
 class CustomLogger extends Logger {
 
-    private final org.slf4j.Logger logger;
+    private final SystemLogger logger;
 
     public CustomLogger( String category ) {
-        logger = LoggerFactory.getLogger(category);
+        logger = new SystemLogger(category);
     }
 
     @Override
@@ -48,27 +47,27 @@ class CustomLogger extends Logger {
 
     @Override
     public boolean isTraceEnabled() {
-        return logger.isTraceEnabled();
+        return logger.isEnabled(MessageType.TRACE);
     }
 
     @Override
     public boolean isDebugEnabled() {
-        return logger.isDebugEnabled();
+        return logger.isEnabled(MessageType.DEBUG);
     }
 
     @Override
     public boolean isInfoEnabled() {
-        return logger.isInfoEnabled();
+        return logger.isEnabled(MessageType.INFO);
     }
 
     @Override
     public boolean isWarnEnabled() {
-        return logger.isWarnEnabled();
+        return logger.isEnabled(MessageType.WARNING);
     }
 
     @Override
     public boolean isErrorEnabled() {
-        return logger.isErrorEnabled();
+        return logger.isEnabled(MessageType.ERROR);
     }
 
     @Override
@@ -76,23 +75,14 @@ class CustomLogger extends Logger {
                       I18nResource message,
                       Object... params ) {
         if (!isWarnEnabled()) return;
-        if (t == null) {
-            warn(message, params);
-            return;
-        }
-        if (message == null) {
-            logger.warn(null, t);
-            return;
-        }
-        logger.warn(message.text(getLoggingLocale(), params), t);
+        logger.write(MessageType.WARNING, message, params, t);
     }
 
     @Override
     public void warn( I18nResource message,
                       Object... params ) {
         if (!isWarnEnabled()) return;
-        if (message == null) return;
-        logger.warn(message.text(getLoggingLocale(), params));
+        logger.write(MessageType.WARNING, message, params, null);
     }
 
     /**
@@ -107,8 +97,7 @@ class CustomLogger extends Logger {
     public void debug( String message,
                        Object... params ) {
         if (!isDebugEnabled()) return;
-        if (message == null) return;
-        logger.debug(StringUtil.createString(message, params));
+        logger.write(MessageType.DEBUG, message, params, null);
     }
 
     /**
@@ -124,15 +113,7 @@ class CustomLogger extends Logger {
                        String message,
                        Object... params ) {
         if (!isDebugEnabled()) return;
-        if (t == null) {
-            debug(message, params);
-            return;
-        }
-        if (message == null) {
-            logger.debug(null, t);
-            return;
-        }
-        logger.debug(StringUtil.createString(message, params), t);
+        logger.write(MessageType.DEBUG, message, params, t);
     }
 
     /**
@@ -147,8 +128,7 @@ class CustomLogger extends Logger {
     public void error( I18nResource message,
                        Object... params ) {
         if (!isErrorEnabled()) return;
-        if (message == null) return;
-        logger.error(message.text(getLoggingLocale(), params));
+        logger.write(MessageType.ERROR, message, params, null);
     }
 
     /**
@@ -164,15 +144,7 @@ class CustomLogger extends Logger {
                        I18nResource message,
                        Object... params ) {
         if (!isErrorEnabled()) return;
-        if (t == null) {
-            error(message, params);
-            return;
-        }
-        if (message == null) {
-            logger.error(null, t);
-            return;
-        }
-        logger.error(message.text(getLoggingLocale(), params), t);
+        logger.write(MessageType.ERROR, message, params, t);
     }
 
     /**
@@ -187,8 +159,7 @@ class CustomLogger extends Logger {
     public void info( I18nResource message,
                       Object... params ) {
         if (!isInfoEnabled()) return;
-        if (message == null) return;
-        logger.info(message.text(getLoggingLocale(), params));
+        logger.write(MessageType.INFO, message, params, null);
     }
 
     /**
@@ -204,15 +175,7 @@ class CustomLogger extends Logger {
                       I18nResource message,
                       Object... params ) {
         if (!isInfoEnabled()) return;
-        if (t == null) {
-            info(message, params);
-            return;
-        }
-        if (message == null) {
-            logger.info(null, t);
-            return;
-        }
-        logger.info(message.text(getLoggingLocale(), params), t);
+        logger.write(MessageType.INFO, message, params, t);
     }
 
     /**
@@ -227,8 +190,7 @@ class CustomLogger extends Logger {
     public void trace( String message,
                        Object... params ) {
         if (!isTraceEnabled()) return;
-        if (message == null) return;
-        logger.trace(StringUtil.createString(message, params));
+        logger.write(MessageType.TRACE, message, params, null);
     }
 
     /**
@@ -244,14 +206,68 @@ class CustomLogger extends Logger {
                        String message,
                        Object... params ) {
         if (!isTraceEnabled()) return;
-        if (t == null) {
-            this.trace(message, params);
-            return;
+        logger.write(MessageType.TRACE, message, params, t);
+    }
+
+    protected static enum MessageType {
+        INFO,
+        ERROR,
+        WARNING,
+        DEBUG,
+        TRACE
+    }
+
+    /**
+     * A crude example of a logging facility to which our logger can delegate. This should never be used in production; always use
+     * a real logging framework or the JDK logger.
+     */
+    protected static class SystemLogger {
+        private final String category;
+
+        protected SystemLogger( String category ) {
+            this.category = category;
         }
-        if (message == null) {
-            logger.trace(null, t);
-            return;
+
+        public String getName() {
+            return category;
         }
-        logger.trace(StringUtil.createString(message, params), t);
+
+        public boolean isEnabled( MessageType msgType ) {
+            switch (msgType) {
+                case TRACE:
+                    return false;
+                default:
+                    return true;
+            }
+        }
+
+        public final void write( MessageType msgType,
+                                 I18nResource msg,
+                                 Object[] params,
+                                 Throwable t ) {
+            if (msg != null) {
+                System.out.println(msgType + " [" + category + "]: " + msg.text(getLoggingLocale(), params));
+            }
+            if (t != null) {
+                System.out.print(msgType + " [" + category + "]: ");
+                t.printStackTrace();
+                System.out.println();
+            }
+        }
+
+        public final void write( MessageType msgType,
+                                 String msg,
+                                 Object[] params,
+                                 Throwable t ) {
+            if (msg != null) {
+                System.out.println(msgType + " [" + category + "]: " + StringUtil.createString(msg, params));
+            }
+            if (t != null) {
+                System.out.print(msgType + " [" + category + "]: ");
+                t.printStackTrace();
+                System.out.println();
+            }
+        }
+
     }
 }

@@ -1,4 +1,4 @@
-package org.modeshape.example.custom.logging;
+package org.modeshape.example.logging.logback;
 
 import java.net.URL;
 import javax.jcr.Node;

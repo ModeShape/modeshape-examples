@@ -1,7 +1,7 @@
 # ModeShape Custom Logging Example
 
-This is a simple self-contained Maven project that shows how to make ModeShape send log messages to a custom logging framework that
-ModeShape is not normally aware of. 
+This is a simple self-contained Maven project that shows how to make ModeShape send log messages to the [LogBack](http://logback.qos.ch) framework
+via SLF4J API.
 
 Out of the box, ModeShape is able to discover and use several common logging frameworks:
 
@@ -15,45 +15,16 @@ on the classpath for the Log4J library, and if found ModeShape uses that. If nei
 ModeShape will look on the classpath for the `org.modeshape.common.logging.CustomLoggerFactory` class (see below), 
 and if found uses this. If none of these are found, the ModeShape falls back to the using the JDK logging facility.
 
-To use our own custom logging framework, make sure that SLF4J and Log4J are not on the classpath, and then implement
-our own logger.
+## LogBack
 
-*Note that Infinispan and other libraries use SLF4J, so the custom logging approach often works best only when the application
-is using the ModeShape client JAR (e.g., REST client and JDBC driver).*
-
-## CustomLoggerFactory
-
-Not all applications use one of the logging frameworks listed above, and so ModeShape provides a way for you to 
-tell ModeShape how to use a completely different logging framework. To do this, you must provide the 
-`org.modeshape.common.logging.CustomLoggerFactory` class (with that name and in that package) that extends ModeShape's
-[org.modeshape.common.logging.LogFactory](https://github.com/ModeShape/modeshape/blob/master/modeshape-common/src/main/java/org/modeshape/common/logging/LogFactory.java)
-abstract class and that implements the `getLogger(String)` method to return your own custom implementation of the
-[org.modeshape.common.logging.Logger](https://github.com/ModeShape/modeshape/blob/master/modeshape-common/src/main/java/org/modeshape/common/logging/Logger.java)
-class (which can be named anything an in any package). The `Logger` class is responsible for forwarding the ModeShape
-log requests to the your logging framework.
-
-This mechanism is actually quite simple, and doesn't require any special classloaders or extension APIs: simply provide 
-the `CustomLoggerFactory` and a custom `Logger` implementation on the classpath, and ModeShape will use it.
-(Be sure that SLF4J and Log4J are not on the classpath, or else ModeShape will use them instead.)
-
-
-## Creating your own implementations
-
-You can use this example project to create and test your own `CustomLoggerFactory` implementation. 
-Simply change the project to use the desired logging framework, change the 
-[org.modeshape.common.logging.CustomLogger](modeshape-custom-logging-example/src/main/java/org/modeshape/common/logging/CustomLogger.java)
-class to use that framework, and then build and run the tests (see below). Once it works as you expect, put the 
-[org.modeshape.common.logging.CustomLoggerFactory](modeshape-custom-logging-example/src/main/java/org/modeshape/common/logging/CustomLoggerFactory.java)
-and [org.modeshape.common.logging.CustomLogger](modeshape-custom-logging-example/src/main/java/org/modeshape/common/logging/CustomLogger.java)
-classes into your application's classpath. (For Java SE applications, you can simply include these classes in one of your application's JAR files.)
-
+LogBack is a small but useful logging framework that directly implements the SLF4J API, meaning that no SLF4J adapter library is needed.
+Therefore, this module simply adds the SLF4J API and the LogBack libraries to the classpath, and ModeShape does all the rest.
 
 ## About this example
 
-The example provides an implementation of the 
-[org.modeshape.common.logging.CustomLoggerFactory](modeshape-custom-logging-example/src/main/java/org/modeshape/common/logging/CustomLoggerFactory.java) class and then
+The example shows how to use the LogBack logging framework with ModeShape. The example 
 sets up ModeShape as normal to run embedded within a simple J2SE application. The 
-[ModeShapeExample](modeshape-custom-logging-example/src/main/java/org/modeshape/example/logging/custom/ModeShapeExample.java) class has a 'main(...)' method
+[ModeShapeExample](modeshape-logback-logging-example/src/main/java/org/modeshape/example/logging/logback/ModeShapeExample.java) class has a 'main(...)' method
 that loads a ModeShape configuration as a resource on the classpath, uses that configuration to build a 
 ModeShapeEngine instance, starts the engine, and obtains a JCR Session to the repository.
 
