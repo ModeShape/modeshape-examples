@@ -13,7 +13,7 @@
 		<!--
 		Global dependency version information
 		-->
-		<modeshape.version>3.0.0.Beta1</modeshape.version>
+		<modeshape.version>3.0.0.Beta2</modeshape.version>
 		<jcr.version>2.0</jcr.version>
 		<junit.version>4.8.2</junit.version>
 		<!--
