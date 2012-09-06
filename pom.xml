@@ -22,5 +22,6 @@
     <module>modeshape-slf4j-logging-example</module>
     <module>modeshape-sequencing-example</module>
     <module>modeshape-ddl-parser-example</module>
+    <module>modeshape-web-example</module>
   </modules>
 </project>

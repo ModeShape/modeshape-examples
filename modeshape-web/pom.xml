@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>modeshape-web</artifactId>
+    <groupId>org.modeshape.example</groupId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
+    <name>ModeShape-web</name>
+
+    <properties>
+		<!-- Instruct the build to use only UTF-8 encoding for source code -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<!--
+		Global dependency version information
+		-->
+        <modeshape.version>3.0.0.Beta2</modeshape.version>
+        <jcr.version>2.0</jcr.version>
+        <junit.version>4.8.2</junit.version>
+		<!--
+		Maven plugin versions
+		-->
+        <maven.surefire.report.plugin.version>2.4.3</maven.surefire.report.plugin.version>
+        <maven.surefire.plugin.version>2.7.1</maven.surefire.plugin.version>
+        <maven.assembly.plugin.version>2.2</maven.assembly.plugin.version>
+        <maven.install.plugin.version>2.3.1</maven.install.plugin.version>
+        <maven.jar.plugin.version>2.3.1</maven.jar.plugin.version>
+        <maven.compiler.plugin.version>2.3.2</maven.compiler.plugin.version>
+        <maven.source.plugin.version>2.1.2</maven.source.plugin.version>
+        <maven.resources.plugin.version>2.4.3</maven.resources.plugin.version>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>javax.jcr</groupId>
+            <artifactId>jcr</artifactId>
+            <version>${jcr.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.14</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.modeshape</groupId>
+            <artifactId>modeshape-jcr</artifactId>
+            <version>3.0-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+    <build>
+        <finalName>modeshape-web-${project.version}</finalName>
+    </build>
+</project>
