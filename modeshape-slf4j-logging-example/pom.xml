@@ -4,7 +4,7 @@
 	<groupId>org.modeshape.example</groupId>
 	<artifactId>modeshape-slf4j-logging-example</artifactId>
 	<packaging>jar</packaging>
-	<name>ModeShape Repository Example that uses SLF4J (and Log4J)</name>
+	<name>Example that uses ModeShape w/ SLF4J (and Log4J)</name>
 	<description>A simple self-contained example application that creates an embedded ModeShape engine but uses the SLF4J logging factory (with Log4J).</description>
 	<version>1.0-SNAPSHOT</version>
 	<properties>
