@@ -36,7 +36,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
-import org.modeshape.jcr.JcrRepositoryFactory;
 
 /**
  * Demo for using JCR from web application.
@@ -63,10 +62,9 @@ public class RepoServlet extends HttpServlet {
 
         try {
             //lookup repository
-            Repository repository = this.isURI(location) ?
-                    lookupUsingFactory(location) : lookupUsingJndi(location);
+            Repository repository = lookupUsingJndi(location);
 
-            //Factory may silently return null if location is recognized
+            //Lookup may silently return null if location is recognized
             //as uri but uri format is wrong, so double check
             if (repository == null) {
                 throw new Exception("Unable to lookup repository under that name. Please check location format");
@@ -157,19 +155,5 @@ public class RepoServlet extends HttpServlet {
         logger.info(String.format("Location %s recognized as JNDI name", jndiName));
         InitialContext ic = new InitialContext();
         return (Repository) ic.lookup(jndiName);
-    }
-
-    /**
-     * Gets access to Repository through JCR API.
-     *
-     * @param url the repository URL.
-     * @return Repository instance
-     * @throws Exception
-     */
-    private Repository lookupUsingFactory(String url) throws Exception {
-        logger.info(String.format("Location %s recognized as URL", url));
-        JcrRepositoryFactory factory = (JcrRepositoryFactory) Class.forName("org.modeshape.jcr.JcrRepositoryFactory").newInstance();
-        Map params = Collections.singletonMap(JcrRepositoryFactory.URL, url);
-        return factory.getRepository(params);
     }
 }
