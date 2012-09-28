@@ -13,9 +13,7 @@
 		<!--
 		Global dependency version information
 		-->
-		<modeshape.version>3.0.0.Beta4</modeshape.version>
-		<jcr.version>2.0</jcr.version>
-		<junit.version>4.8.2</junit.version>
+		<modeshape.version>3.0-SNAPSHOT</modeshape.version>
 		<!--
 		Maven plugin versions
 		-->
@@ -28,29 +26,41 @@
 		<maven.source.plugin.version>2.1.2</maven.source.plugin.version>
 		<maven.resources.plugin.version>2.4.3</maven.resources.plugin.version>
 	</properties>
-    <dependencies>
-        <dependency>
-            <groupId>javax.jcr</groupId>
-            <artifactId>jcr</artifactId>
-            <version>${jcr.version}</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.modeshape</groupId>
-            <artifactId>modeshape-jcr</artifactId>
-            <version>${modeshape.version}</version>
-            <scope>compile</scope>
-        </dependency>
-        <!-- No logging library provided, so ModeShape will use JDK Util Logging -->
-        
-        <!-- Testing (note the scope) -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
+  <dependencyManagement>    
+      <dependencies>
+          <!-- Import the ModeShape BOM for embedded usage. This adds to the "dependenciesManagement" section
+               defaults for all of the modules we might need, but we still have to include in the 
+               "dependencies" section the modules we DO need. The benefit is that we don't have to
+               specify the versions of any of those modules.-->
+          <dependency>
+              <groupId>org.modeshape.bom</groupId>
+              <artifactId>modeshape-bom-embedded</artifactId>
+              <version>${modeshape.version}</version>
+              <type>pom</type>
+              <scope>import</scope>
+          </dependency>
+      </dependencies>
+  </dependencyManagement>
+  <dependencies>
+      <!-- This module is **explicitly** using a number of other modules, so we have to include
+           them in the "dependencies" section. However, since we imported the ModeShape BOM in the
+           "dependencyManagement" section, we don't have to include "scope" or "version". -->
+      <dependency>
+          <groupId>javax.jcr</groupId>
+          <artifactId>jcr</artifactId>
+      </dependency>
+      <dependency>
+          <groupId>org.modeshape</groupId>
+          <artifactId>modeshape-jcr</artifactId>
+      </dependency>
+      <!-- No logging library provided, so ModeShape will use JDK Util Logging -->
+      
+      <!-- Use JUnit for testing -->
+      <dependency>
+          <groupId>junit</groupId>
+          <artifactId>junit</artifactId>
+      </dependency>
+  </dependencies>
 	<build>
 		<resources>
 			<resource>

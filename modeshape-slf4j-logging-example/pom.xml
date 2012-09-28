@@ -13,12 +13,7 @@
 		<!--
 		Global dependency version information
 		-->
-		<modeshape.version>3.0.0.Beta4</modeshape.version>
-		<jcr.version>2.0</jcr.version>
-		<slf4j.api.version>1.6.1</slf4j.api.version>
-		<slf4j.log4j.version>1.6.1</slf4j.log4j.version>
-		<log4j.version>1.2.16</log4j.version>
-		<junit.version>4.8.2</junit.version>
+		<modeshape.version>3.0-SNAPSHOT</modeshape.version>
 		<!--
 		Maven plugin versions
 		-->
@@ -31,54 +26,53 @@
 		<maven.source.plugin.version>2.1.2</maven.source.plugin.version>
 		<maven.resources.plugin.version>2.4.3</maven.resources.plugin.version>
 	</properties>
-    <dependencies>
-        <dependency>
-            <groupId>javax.jcr</groupId>
-            <artifactId>jcr</artifactId>
-            <version>${jcr.version}</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.modeshape</groupId>
-            <artifactId>modeshape-jcr</artifactId>
-            <version>${modeshape.version}</version>
-            <scope>compile</scope>
-        </dependency>
-        <!-- Explicitly using this module in the logging factory, so it must be a dependency -->
-        <dependency>
-            <groupId>org.modeshape</groupId>
-            <artifactId>modeshape-common</artifactId>
-            <version>${modeshape.version}</version>
-            <scope>compile</scope>
-        </dependency>
-        <!-- Logging: use Log4J via SLF4J API -->
-        <!-- ModeShape doesn't include the SLF4J API, so include it, first. -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.api.version}</version>
-            <scope>compile</scope>
-        </dependency>
-    		<dependency>
-    			  <groupId>org.slf4j</groupId>
-    			  <artifactId>slf4j-log4j12</artifactId>
-    			  <version>${slf4j.log4j.version}</version>
-    			  <scope>compile</scope>
-    		</dependency>
-    		<dependency>
-    			  <groupId>log4j</groupId>
-    			  <artifactId>log4j</artifactId>
-    			  <version>${log4j.version}</version>
-    			  <scope>compile</scope>
-    		</dependency>
-        <!-- Testing (note the scope) -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
+  <dependencyManagement>    
+      <dependencies>
+          <!-- Import the ModeShape BOM for embedded usage. This adds to the "dependenciesManagement" section
+               defaults for all of the modules we might need, but we still have to include in the 
+               "dependencies" section the modules we DO need. The benefit is that we don't have to
+               specify the versions of any of those modules.-->
+          <dependency>
+              <groupId>org.modeshape.bom</groupId>
+              <artifactId>modeshape-bom-embedded</artifactId>
+              <version>${modeshape.version}</version>
+              <type>pom</type>
+              <scope>import</scope>
+          </dependency>
+      </dependencies>
+  </dependencyManagement>
+  <dependencies>
+      <!-- This module is **explicitly** using a number of other modules, so we have to include
+           them in the "dependencies" section. However, since we imported the ModeShape BOM in the
+           "dependencyManagement" section, we don't have to include "scope" or "version". -->
+      <dependency>
+          <groupId>javax.jcr</groupId>
+          <artifactId>jcr</artifactId>
+      </dependency>
+      <dependency>
+          <groupId>org.modeshape</groupId>
+          <artifactId>modeshape-jcr</artifactId>
+      </dependency>
+      <!-- Logging: use Log4J via SLF4J API -->
+      <dependency>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-api</artifactId>
+      </dependency>
+	    <!-- We could use SL4J with any other binding, but here we'll use Log4J -->
+  		<dependency>
+  			  <groupId>org.slf4j</groupId>
+  			  <artifactId>slf4j-log4j12</artifactId>
+  		</dependency>
+  		<dependency>
+  			  <groupId>log4j</groupId>
+  			  <artifactId>log4j</artifactId>
+  		</dependency>
+      <!-- Use JUnit for testing -->
+      <dependency>
+          <groupId>junit</groupId>
+          <artifactId>junit</artifactId>
+      </dependency>
+  </dependencies>
 	<build>
 		<resources>
 			<resource>
