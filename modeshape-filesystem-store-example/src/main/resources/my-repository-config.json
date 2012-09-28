@@ -1,0 +1,24 @@
+{
+    "name" : "Persisted-Repository",
+    "workspaces" : {
+        "predefined" : ["otherWorkspace"],
+        "default" : "default",
+        "allowCreation" : true
+    },
+    "security" : {
+        "anonymous" : {
+            "roles" : ["readonly","readwrite","admin"],
+            "useOnFailedLogin" : false
+        }
+    },
+    "storage" : {
+        "cacheConfiguration" : "infinispan-configuration.xml",
+        "cacheName" : "persisted-repository",
+        "binaryStorage" : {
+            "type" : "file",
+            "directory": "tmp",
+            "minimumBinarySizeInBytes" : 999
+        }
+    }
+
+}
