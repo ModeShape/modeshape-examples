@@ -4,8 +4,8 @@
     <groupId>org.modeshape.example</groupId>
     <artifactId>modeshape-filesystem-store-example</artifactId>
     <packaging>jar</packaging>
-    <name>ModeShape repository with filesystem store example</name>
-    <description>A simple example application that creates an embedded ModeShape engine using filesystem as storage.</description>
+	  <name>Example that uses ModeShape w/ file-based storage</name>
+    <description>A simple example application that creates an embedded ModeShape engine using filesystem for storage.</description>
     <version>1.0-SNAPSHOT</version>
     <properties>
 		<!-- Instruct the build to use only UTF-8 encoding for source code -->
@@ -14,8 +14,6 @@
 		Global dependency version information
 		-->
         <modeshape.version>3.0-SNAPSHOT</modeshape.version>
-        <jcr.version>2.0</jcr.version>
-        <junit.version>4.8.2</junit.version>
 		<!--
 		Maven plugin versions
 		-->
@@ -29,60 +27,42 @@
         <maven.resources.plugin.version>2.4.3</maven.resources.plugin.version>
     </properties>
 
+    <dependencyManagement>    
+        <dependencies>
+            <!-- Import the ModeShape BOM for embedded usage. This adds to the "dependenciesManagement" section
+                 defaults for all of the modules we might need, but we still have to include in the 
+                 "dependencies" section the modules we DO need. The benefit is that we don't have to
+                 specify the versions of any of those modules.-->
+            <dependency>
+                <groupId>org.modeshape.bom</groupId>
+                <artifactId>modeshape-bom-embedded</artifactId>
+                <version>${modeshape.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
     <dependencies>
-    <!-- Core Modeshape dependency -->
-
         <dependency>
             <groupId>org.modeshape</groupId>
             <artifactId>modeshape-jcr-api</artifactId>
-            <version>${modeshape.version}</version>
         </dependency>
-
-
-
         <dependency>
             <groupId>org.modeshape</groupId>
             <artifactId>modeshape-jcr</artifactId>
-            <version>${modeshape.version}</version>
         </dependency>
-
-
-
         <dependency>
             <groupId>org.modeshape</groupId>
             <artifactId>modeshape-common</artifactId>
-            <version>${modeshape.version}</version>
         </dependency>
-
-
-
-         <!-- Infinispan -->
-
-        <dependency>
-            <groupId>org.modeshape</groupId>
-            <artifactId>modeshape-schematic</artifactId>
-            <version>${modeshape.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.infinispan</groupId>
-            <artifactId>infinispan-core</artifactId>
-            <version>5.1.2.FINAL</version>
-        </dependency>
-
         <dependency>
             <groupId>org.infinispan</groupId>
             <artifactId>infinispan-cachestore-bdbje</artifactId>
-            <version>5.1.4.FINAL</version>
         </dependency>
-
-
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.8.2</version>
         </dependency>
-
     </dependencies>
     
     <build>
