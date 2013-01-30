@@ -16,7 +16,7 @@
         "cacheName" : "persisted-repository",
         "binaryStorage" : {
             "type" : "file",
-            "directory": "tmp",
+            "directory": "target/binaries",
             "minimumBinarySizeInBytes" : 999
         }
     }
