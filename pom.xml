@@ -24,5 +24,6 @@
     <module>modeshape-ddl-parser-example</module>
     <module>modeshape-filesystem-store-example</module>
     <module>modeshape-web-example</module>
+    <module>modeshape-jca-example</module>
   </modules>
 </project>
