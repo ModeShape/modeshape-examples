@@ -43,7 +43,7 @@ Then use Maven to build all of the examples (and run any unit tests):
 or you can build an individual example. For instance:
 
     $ cd modeshape-embedded-example
-    $ mvn clean install
+    $ mvn clean install -s settings.xml
 
 See [this ModeShape community article](http://community.jboss.org/wiki/ModeShapeandMaven) 
 for help on how to install Maven 3.

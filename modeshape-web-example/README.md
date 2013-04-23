@@ -29,20 +29,9 @@ This project is self-contained and can be built at the top level of
 your local clone of the Git repository,
 or by simply building this project using Maven 3:
 
-    $ mvn clean install
+    $ mvn clean install -s ../settings.xml
 
 See [this ModeShape community article](http://community.jboss.org/wiki/ModeShapeandMaven)
-for help on how to install Maven 3.
-
-# The ModeShape project
-
-This project is self-contained and can be built at the top level of your 
-local clone of the Git repository, or by simply building this project 
-using Maven 3:
-
-    $ mvn clean install
-
-See [this ModeShape community article](http://community.jboss.org/wiki/ModeShapeandMaven) 
 for help on how to install Maven 3.
 
 # The ModeShape project
