@@ -38,7 +38,7 @@ To run the examples, simply clone the repository:
 
 Then use Maven to build all of the examples (and run any unit tests):
 
-    $ mvn clean install
+    $ mvn clean install -s settings.xml
 
 or you can build an individual example. For instance:
 
@@ -47,6 +47,13 @@ or you can build an individual example. For instance:
 
 See [this ModeShape community article](http://community.jboss.org/wiki/ModeShapeandMaven) 
 for help on how to install Maven 3.
+
+By default, these examples use the latest released version of ModeShape, but
+you can easily build them to use earlier versions (as long as the examples don't
+use APIs or configuration options that were introduced in subsequent versions):
+
+    $ mvn clean install -s settings.xml -Dmodeshape.version=3.2.0.Final
+
 
 # Looking for ModeShape 2.x examples?
 
