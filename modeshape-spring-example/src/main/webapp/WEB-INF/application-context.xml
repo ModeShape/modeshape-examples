@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+    <!--Enable Spring 3 MVC annotations-->
+    <mvc:annotation-driven />
+    <!-- Enable 'clasic' Spring annotations -->
+    <context:annotation-config/>
+    <!-- Classpath to scan for annotations -->
+    <context:component-scan base-package="org.modeshape.example.spring"/>
+
+    <!-- Atomikos transaction manager -->
+    <bean id="transactionManager" class="com.atomikos.icatch.jta.UserTransactionManager"
+          init-method="init" destroy-method="close">
+        <property name="forceShutdown" value="false"/>
+    </bean>
+
+    <!-- Infinispan-Atomikos "hook" -->
+    <bean id="atomikosTransactionManagerLookup" class="org.modeshape.example.spring.jcr.AtomikosTransactionManagerLookup">
+        <property name="atomikosTransactionManager" ref="transactionManager"/>
+    </bean>
+
+    <!--
+        Spring-ModeShape hook. Note the "depends" attribute, which is required to make sure the static Atomikos transaction manager
+        has been injected.
+    -->
+    <bean id="repositoryFactory" class="org.modeshape.example.spring.jcr.ModeShapeRepositoryFactory" depends-on="atomikosTransactionManagerLookup">
+       <property name="configuration" value="classpath:repository-config.json"/>
+    </bean>
+
+    <!--Standard JSP/JSTL view resolver -->
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/WEB-INF/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+</beans>

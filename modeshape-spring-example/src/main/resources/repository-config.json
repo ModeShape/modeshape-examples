@@ -8,7 +8,7 @@
         "cacheConfiguration" : "infinispan-config.xml",
         "binaryStorage" : {
             "type" : "file",
-            "directory": "${java.io.tmpdir}/modeshape_jsf_sample/binaries",
+            "directory": "${java.io.tmpdir}/modeshape_spring_sample/binaries",
             "minimumBinarySizeInBytes" : 40
         }
     },
@@ -26,9 +26,7 @@
         "enabled" : true,
         "indexStorage" : {
             "type" : "filesystem",
-            "location" : "${java.io.tmpdir}/modeshape_jsf_sample/indexes",
-            "lockingStrategy" : "simple",
-            "fileSystemAccessType" : "auto"
+            "location" : "${java.io.tmpdir}/modeshape_spring_sample/indexes"
         },
         "indexing" : {
             "rebuildOnStartup" : {

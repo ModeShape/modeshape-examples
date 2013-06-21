@@ -1,11 +1,11 @@
-Example Using ModeShape from a JSF application via CDI
+Example Using ModeShape from a Spring Application
 =========================================================
 
 What is it?
 -----------
 
 This is a self-contained and deployable Maven 3 project that shows how to get access and use a repository from
-a JSF 2 application, using only CDI.
+a Spring-based web application, using Atomikos as a custom transaction manager.
 
 System requirements
 -------------------
@@ -26,7 +26,7 @@ using Maven 3.
 
         mvn clean package
 
-2. This will produce a WAR file named `target/modeshape-tomcat-jsf-example.war`
+2. This will produce a WAR file named `target/modeshape-spring-example.war`
 3. Copy the above WAR into your local `%TOMCAT_HOME%/webapps` folder
 4. Start the Tomcat server
 
@@ -34,7 +34,7 @@ using Maven 3.
 Accessing the application
 -------------------------
 
-The application will be running by default at the following URL: <http://localhost:8080/modeshape-tomcat-jsf-example/>.
+The application will be running by default at the following URL: <http://localhost:8080/modeshape-spring-example/>.
 The user is presented with a form where he can input one of the following:
 
 1. Parent Absolute Path - an absolute node path
@@ -42,8 +42,8 @@ The user is presented with a form where he can input one of the following:
 
 based on which one of the following actions can be performed
 
-1. Show children - displays the children of node located at "Parent Absolute Path"
-2. Add Node - add a new child with the given name under the node located at "Parent Absolute Path"
+1. Load nodes - displays the children of node located at "Parent Absolute Path"
+2. New node - add a new child with the given name under the node located at "Parent Absolute Path"
 
 The ModeShape project
 ---------------------
