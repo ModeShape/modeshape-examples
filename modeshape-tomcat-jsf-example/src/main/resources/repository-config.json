@@ -1,0 +1,38 @@
+{
+    "name" : "sample",
+    "monitoring" : {
+        "enabled" : true
+    },
+    "storage" : {
+        "cacheName" : "sampleRepository",
+        "cacheConfiguration" : "infinispan-config.xml",
+        "binaryStorage" : {
+            "type" : "file",
+            "directory": "${java.io.tmpdir}/modeshape_jsf_sample/binaries",
+            "minimumBinarySizeInBytes" : 40
+        }
+    },
+    "workspaces" : {
+        "default" : "default",
+        "allowCreation" : true
+    },
+    "security" : {
+        "anonymous" : {
+            "roles" : ["readonly","readwrite","admin"],
+            "useOnFailedLogin" : false
+        }
+    },
+    "query" : {
+        "enabled" : true,
+        "indexStorage" : {
+            "type" : "filesystem",
+            "location" : "${java.io.tmpdir}/modeshape_jsf_sample/indexes"
+        },
+        "indexing" : {
+            "rebuildOnStartup" : {
+                "when" : "if_missing",
+                "mode" : "async"
+            }
+        }
+    }
+}

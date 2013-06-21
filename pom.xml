@@ -25,5 +25,7 @@
     <module>modeshape-filesystem-store-example</module>
     <module>modeshape-jdbc-store-example</module>
     <module>modeshape-jca-example</module>
+    <module>modeshape-tomcat-jsf-example</module>
+    <module>modeshape-spring-example</module>
   </modules>
 </project>
