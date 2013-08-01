@@ -1,0 +1,35 @@
+{
+    "name" : "Federated Repository",
+    "workspaces" : {
+        "predefined" : ["otherWorkspace"],
+        "default" : "default",
+        "allowCreation" : true
+    },
+    "security" : {
+        "anonymous" : {
+            "roles" : ["readonly","readwrite","admin"],
+            "useOnFailedLogin" : false
+        }
+    },
+    "storage" : {
+        "cacheConfiguration" : "infinispan-configuration.xml",
+        "cacheName" : "persistentRepository",
+        "binaryStorage" : {
+            "type" : "file",
+            "directory": "target/federation_repository/binaries",
+            "minimumBinarySizeInBytes" : 999
+        }
+    },
+    "externalSources" : {
+        "target-fs" : {
+            "classname" : "filesystem",
+            "directoryPath" : "target/files",
+            "extraPropertiesStorage" : "json",
+            "cacheTtlSeconds" : 1,
+            "projections" : [
+                "default:/rootFolder => /"
+            ]
+        }
+    } ,
+    "node-types" : ["any-properties.cnd"]
+}
