@@ -1,8 +1,7 @@
-# ModeShape Embedded Example
+# ModeShape Federation Example
 
-This is a self-contained Maven project that shows how to embed ModeShape within a simple J2SE application while storing content
-on the filesystem.
-The  [ModeShapeExample](modeshape-filesystem-store-example/src/main/java/org/modeshape/example/filesystem/ModeShapeExample.java)
+This is a self-contained Maven project that shows how to configure ModeShape in order to expose external content.
+[ModeShapeExample](modeshape-federation-example/src/main/java/org/modeshape/example/federation/ModeShapeExample.java)
 class has a 'main(...)' method that loads a ModeShape configuration  as a resource on the classpath, uses that configuration to
 build a  ModeShapeEngine instance, starts the engine, and obtains a JCR Session to the repository.
 
