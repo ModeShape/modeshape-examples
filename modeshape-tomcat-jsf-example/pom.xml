@@ -29,7 +29,7 @@
         <version.war.plugin>2.3</version.war.plugin>
 
         <!-- Global dependency version information-->
-        <version.modeshape>3.4-SNAPSHOT</version.modeshape>
+        <version.modeshape>3.4.0.Final</version.modeshape>
         <version.servlet.api>2.5</version.servlet.api>
         <version.weld.servlet>1.1.9.Final</version.weld.servlet>
         <version.jsf.api>2.0</version.jsf.api>
