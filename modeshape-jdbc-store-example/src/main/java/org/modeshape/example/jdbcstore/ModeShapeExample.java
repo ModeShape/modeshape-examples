@@ -1,4 +1,4 @@
-package org.modeshape.example.filesystem;
+package org.modeshape.example.jdbcstore;
 
 import java.io.ByteArrayInputStream;
 import java.net.URL;

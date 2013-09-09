@@ -22,9 +22,8 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package org.modeshape.example.embedded;
+package org.modeshape.example.jdbcstore;
 
-import org.modeshape.example.filesystem.ModeShapeExample;
 import org.junit.Test;
 
 public class ModeShapeExampleTest {
