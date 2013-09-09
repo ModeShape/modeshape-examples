@@ -28,7 +28,7 @@
         <version.war.plugin>2.3</version.war.plugin>
 
         <!-- Global dependency version information-->
-        <version.modeshape>3.4.0.Final</version.modeshape>
+        <modeshape.version>3.5.0.Final</modeshape.version>
         <version.servlet.api>2.5</version.servlet.api>
         <version.spring>3.2.3.RELEASE</version.spring>
         <version.jta>1.1</version.jta>
@@ -42,7 +42,7 @@
             <dependency>
                 <groupId>org.modeshape.bom</groupId>
                 <artifactId>modeshape-bom-embedded</artifactId>
-                <version>${version.modeshape}</version>
+                <version>${modeshape.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
