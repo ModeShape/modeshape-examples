@@ -13,7 +13,7 @@
 		<!--
 		Global dependency version information
 		-->
-        <modeshape.version>3.7.1.Final</modeshape.version>
+        <modeshape.version>4.0-SNAPSHOT</modeshape.version>
 		<!--
 		Maven plugin versions
 		-->
@@ -116,8 +116,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>${maven.compiler.plugin.version}</version>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
+					<source>1.7</source>
+					<target>1.7</target>
 					<showDeprecation>false</showDeprecation>
 					<showWarnings>false</showWarnings>
 				</configuration>

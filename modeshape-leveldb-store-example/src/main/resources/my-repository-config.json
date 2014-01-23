@@ -1,0 +1,33 @@
+{
+    "name" : "Persisted-Repository",
+    "workspaces" : {
+        "predefined" : ["otherWorkspace"],
+        "default" : "default",
+        "allowCreation" : true
+    },
+    "security" : {
+        "anonymous" : {
+            "roles" : ["readonly","readwrite","admin"],
+            "useOnFailedLogin" : false
+        }
+    },
+    "storage" : {
+        "cacheConfiguration" : "infinispan-configuration.xml",
+        "cacheName" : "persisted_repository",
+        "binaryStorage" : {
+            "type" : "file",
+            "directory": "target/content/binaries",
+            "minimumBinarySizeInBytes" : 999
+        }
+    },
+    "query":{
+        "enabled":true,
+        "rebuildUponStartup":"if_missing",
+        "indexStorage": {
+            "type":"filesystem",
+            "location":"target/content/index",
+            "lockingStrategy":"simple",
+            "fileSystemAccessType":"auto"
+        }
+    },
+}

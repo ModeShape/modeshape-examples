@@ -24,6 +24,7 @@
     <module>modeshape-ddl-parser-example</module>
     <module>modeshape-filesystem-store-example</module>
     <module>modeshape-jdbc-store-example</module>
+    <module>modeshape-leveldb-store-example</module>
     <module>modeshape-jca-example</module>
     <module>modeshape-tomcat-jsf-example</module>
     <module>modeshape-spring-example</module>

@@ -1,4 +1,4 @@
-# ModeShape Embedded Example
+# ModeShape JCA Example
 
 This is a simple web application project that shows how to access 
 repository within a simple J2EE application using JCA connector. 

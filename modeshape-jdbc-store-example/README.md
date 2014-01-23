@@ -1,11 +1,11 @@
-# ModeShape Embedded Example
+# ModeShape JDBC Store Example
 
-This is a self-contained Maven project that shows how to embed ModeShape 
-within a simple J2SE application. The 
-[ModeShapeExample](modeshape-embedded-example/src/main/java/org/modeshape/example/embedded/ModeShapeExample.java) class has a 'main(...)' method that loads a ModeShape configuration 
-as a resource on the classpath, uses that configuration to build a 
-ModeShapeEngine instance, starts the engine, and obtains a JCR Session 
-to the repository.
+This is a self-contained Maven project that shows how to embed ModeShape within a simple J2SE application while storing content
+in a JDBC-compliant database.
+The  [ModeShapeExample](modeshape-jdbc-store-example/src/main/java/org/modeshape/example/jdbcstore/ModeShapeExample.java)
+class has a 'main(...)' method that loads a ModeShape configuration  as a resource on the classpath, uses that configuration to
+build a  ModeShapeEngine instance, starts the engine, and obtains a JCR Session to the repository.
+
 
 This project is self-contained and can be built at the top level of your 
 local clone of the Git repository, or by simply building this project 
