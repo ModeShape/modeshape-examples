@@ -2,10 +2,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.modeshape.example</groupId>
-    <artifactId>modeshape-filesystem-store-example</artifactId>
+    <artifactId>modeshape-leveldb-store-example</artifactId>
     <packaging>jar</packaging>
-	  <name>Example that uses ModeShape w/ file-based storage</name>
-    <description>A simple example application that creates an embedded ModeShape engine using filesystem for storage.</description>
+	  <name>Example that uses ModeShape w/ a LevelDB-based storage</name>
+    <description>A simple example application that creates an embedded ModeShape engine using local LevelDB database for storage, and the file system for indexes and binaries.</description>
     <version>1.0-SNAPSHOT</version>
     <properties>
 		<!-- Instruct the build to use only UTF-8 encoding for source code -->
@@ -58,6 +58,11 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
+        </dependency>
+        <!--This examples uses Infinispan's LevelDB cache store -->
+        <dependency>
+            <groupId>org.infinispan</groupId>
+            <artifactId>infinispan-cachestore-leveldb</artifactId>
         </dependency>
     </dependencies>
     

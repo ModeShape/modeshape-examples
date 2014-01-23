@@ -13,8 +13,8 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.6</maven.compiler.source>
-        <maven.compiler.target>1.6</maven.compiler.target>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
 
         <!-- Maven plugin versions -->
         <version.assembly.plugin>2.4</version.assembly.plugin>
@@ -28,7 +28,7 @@
         <version.war.plugin>2.3</version.war.plugin>
 
         <!-- Global dependency version information-->
-        <modeshape.version>3.7.1.Final</modeshape.version>
+        <modeshape.version>4.0-SNAPSHOT</modeshape.version>
         <version.servlet.api>2.5</version.servlet.api>
         <version.spring>3.2.3.RELEASE</version.spring>
         <version.jta>1.1</version.jta>

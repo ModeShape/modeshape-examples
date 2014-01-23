@@ -1,4 +1,4 @@
-# ModeShape Embedded Example
+# ModeShape Filesystem Store Example
 
 This is a self-contained Maven project that shows how to embed ModeShape within a simple J2SE application while storing content
 on the filesystem.
