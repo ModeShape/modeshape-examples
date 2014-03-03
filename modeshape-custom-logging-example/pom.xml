@@ -8,8 +8,10 @@
 	<description>A simple self-contained example application that creates an embedded ModeShape engine but uses a custom logging framework.</description>
 	<version>1.0-SNAPSHOT</version>
 	<properties>
-		<!-- Instruct the build to use only UTF-8 encoding for source code -->
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- Instruct the build to use only UTF-8 encoding for source code -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
 		<!--
 		Global dependency version information
 		-->
@@ -25,7 +27,12 @@
 		<maven.compiler.plugin.version>2.3.2</maven.compiler.plugin.version>
 		<maven.source.plugin.version>2.1.2</maven.source.plugin.version>
 		<maven.resources.plugin.version>2.4.3</maven.resources.plugin.version>
-	</properties>
+
+        <!--dependency versions-->
+        <version.slf4j.api>1.6.1</version.slf4j.api>
+        <version.junit>4.11</version.junit>
+        <version.logback>0.9.29</version.logback>
+    </properties>
   <dependencyManagement>    
       <dependencies>
           <!-- Import the ModeShape BOM for embedded usage. This adds to the "dependenciesManagement" section
@@ -55,24 +62,29 @@
           <groupId>org.modeshape</groupId>
           <artifactId>modeshape-jcr</artifactId>
       </dependency>
+      <dependency>
+          <groupId>org.modeshape</groupId>
+          <artifactId>modeshape-common</artifactId>
+      </dependency>
       <!-- Our code implements a custom logger using LogBack (which implements the SLF4J API)
            and implements ModeShape's logging factory -->
       <dependency>
           <groupId>ch.qos.logback</groupId>
           <artifactId>logback-classic</artifactId>
+          <version>${version.logback}</version>
       </dependency>
       <dependency>
           <groupId>org.slf4j</groupId>
           <artifactId>slf4j-api</artifactId>
+          <version>${version.slf4j.api}</version>
       </dependency>
-      <dependency>
-          <groupId>org.modeshape</groupId>
-          <artifactId>modeshape-common</artifactId>
-      </dependency>
+
       <!-- And of course we're using JUnit for testing -->
       <dependency>
           <groupId>junit</groupId>
           <artifactId>junit</artifactId>
+          <version>${version.junit}</version>
+          <scope>test</scope>
       </dependency>
     </dependencies>
 	<build>
@@ -90,28 +102,12 @@
 				</excludes>
 			</resource>
 		</resources>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-surefire-plugin</artifactId>
-					<configuration>
-						<includes>
-							<include>**/*Test.java</include>
-						</includes>
-					</configuration>
-				</plugin>
-			</plugins>
-		</pluginManagement>
 		<plugins>
 			<!-- Specify the compiler options and settings -->
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>${maven.compiler.plugin.version}</version>
 				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
 					<showDeprecation>false</showDeprecation>
 					<showWarnings>false</showWarnings>
 				</configuration>
@@ -119,16 +115,9 @@
 			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>${maven.surefire.plugin.version}</version>
-				<configuration>
-					<includes>
-						<include>**/*TestCase.java</include>
-						<include>**/*Test.java</include>
-					</includes>
-				</configuration>
 			</plugin>
 			<!-- Produce source jars during the 'verify' phase -->
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
 				<version>${maven.source.plugin.version}</version>
 				<executions>
@@ -147,7 +136,6 @@
 				files are assembled.
 			-->
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
 				<version>${maven.jar.plugin.version}</version>
 				<executions>
@@ -160,12 +148,8 @@
 				</executions>
 			</plugin>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
 				<version>${maven.resources.plugin.version}</version>
-				<configuration>
-					<encoding>${project.build.sourceEncoding}</encoding>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>
