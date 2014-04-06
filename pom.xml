@@ -28,6 +28,7 @@
     <module>modeshape-jca-example</module>
     <module>modeshape-tomcat-jsf-example</module>
     <module>modeshape-spring-example</module>
+    <module>modeshape-spring-security-example</module>
     <module>modeshape-federation-example</module>
   </modules>
 </project>
