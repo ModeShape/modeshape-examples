@@ -55,15 +55,19 @@ use APIs or configuration options that were introduced in subsequent versions):
     $ mvn clean install -s settings.xml -Dmodeshape.version=3.2.0.Final
 
 
-# Looking for ModeShape 2.x examples?
+# Looking for ModeShape 3.x or 2.x examples?
 
-The code on the 'master' branch works against the latest ModeShape 3.x 
-release, but a different branch contains the examples for use with 
-ModeShape 2.x. To get to those, use the Git `checkout` command to 
+The code on the 'master' branch works against the latest ModeShape 4.x 
+(pre) release, but examples for ModeShape 3.x and 2.x are on different
+branches. To get to those, use the Git `checkout` command to 
 switch branches:
 
-    $ git checkout 2.x
+    $ git checkout 3.x
     
+or
+
+    $ git checkout 2.x
+
 and then use the Maven command to build the examples (same as above).
 
 # Need help?
