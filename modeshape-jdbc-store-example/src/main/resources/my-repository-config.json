@@ -20,14 +20,4 @@
             "minimumBinarySizeInBytes" : 999
         }
     },
-    "query":{
-        "enabled":true,
-        "rebuildUponStartup":"if_missing",
-        "indexStorage": {
-            "type":"filesystem",
-            "location":"target/content/index",
-            "lockingStrategy":"simple",
-            "fileSystemAccessType":"auto"
-        }
-    },
 }
