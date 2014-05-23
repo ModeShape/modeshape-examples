@@ -13,7 +13,7 @@
 		<!--
 		Global dependency version information
 		-->
-		<modeshape.version>3.7.4.Final</modeshape.version>
+		<modeshape.version>3.8.0.Final</modeshape.version>
 		<!--
 		Maven plugin versions
 		-->
