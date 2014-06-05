@@ -1,0 +1,32 @@
+{
+    "name" : "JDBCRepository",
+    "monitoring" : {
+        "enabled" : true
+    },
+    "storage" : {
+        "cacheName" : "jdbcRepository",
+        "cacheConfiguration" : "infinispan-config.xml",
+        "binaryStorage": {
+            "type" : "database",
+            "dataSourceJndiName" : "java:comp/env/jdbc/modeshape",
+            "minimumBinarySizeInBytes" : 1024
+        }
+    },
+    "workspaces" : {
+        "default" : "default",
+        "allowCreation" : true
+    },
+    "query" : {
+        "enabled" : true,
+        "indexStorage" : {
+            "type" : "filesystem",
+            "location" : "${project.build.directory}/modeshape_tomcat_jdbc_example_data/indexes"
+        },
+        "indexing" : {
+            "rebuildOnStartup" : {
+                "when" : "if_missing",
+                "mode" : "async"
+            }
+        }
+    }
+}
