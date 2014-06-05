@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context antiJARLocking="true">
+    <Resource name="jdbc/modeshape"
+              auth="Container"
+              type="javax.sql.DataSource"
+              username="${dataSource.username}"
+              password="${dataSource.password}"
+              driverClassName="${dataSource.driverClassName}"
+              url="${dataSource.url}"
+              validationQuery="select 1"
+              maxActive="25"
+              maxIdle="2"/>
+</Context>
