@@ -1,0 +1,31 @@
+<infinispan xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="urn:infinispan:config:6.0 http://www.infinispan.org/schemas/infinispan-config-6.0.xsd"
+            xmlns="urn:infinispan:config:6.0">
+
+    <global>
+    </global>
+
+    <default>
+    </default>
+
+    <namedCache name="sampleRepository">
+
+        <transaction
+                transactionManagerLookupClass="org.infinispan.transaction.lookup.GenericTransactionManagerLookup"
+                transactionMode="TRANSACTIONAL"
+                lockingMode="OPTIMISTIC"/>
+
+        <persistence
+                passivation="false">
+            <singleFile
+                    shared="false"
+                    preload="false"
+                    fetchPersistentState="false"
+                    purgeOnStartup="false"
+                    location="${java.io.tmpdir}/modeshape_spring_security_sample/store">
+            </singleFile>
+        </persistence>
+
+    </namedCache>
+
+</infinispan>
