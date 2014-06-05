@@ -6,9 +6,9 @@
     <artifactId>modeshape-spring-security-example</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>Example of a web application that uses ModeShape together with the Spring Framework</name>
+    <name>Example of a web application that uses ModeShape with Spring Security</name>
     <description>
-        A simple self-contained web application that integrates ModeShape together with the Spring Framework.
+        A simple self-contained web application that integrates ModeShape and Spring Security.
     </description>
 
     <properties>
@@ -28,13 +28,15 @@
         <version.war.plugin>2.3</version.war.plugin>
 
         <!-- Global dependency version information-->
-        <modeshape.version>4.0.0.Alpha1</modeshape.version>
-        <version.servlet.api>3.0.1</version.servlet.api>
+        <modeshape.version>4.0.0.Alpha3</modeshape.version>
+        <version.servlet.api>2.5</version.servlet.api>
         <version.spring>3.2.6.RELEASE</version.spring>
         <version.spring.security>3.2.3.RELEASE</version.spring.security>
         <version.jsp>2.0</version.jsp>
         <version.jstl>1.2</version.jstl>
         <version.log4j>1.2.16</version.log4j>
+        <version.slf4j.api>1.6.1</version.slf4j.api>
+        <version.slf4j.log4j>1.6.1</version.slf4j.log4j>
     </properties>
 
     <dependencyManagement>
@@ -112,6 +114,18 @@
             <version>${version.spring.security}</version>
         </dependency>
 
+        <!-- Logging: use Log4J via SLF4J API -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${version.slf4j.api}</version>
+        </dependency>
+        <!-- We could use SL4J with any other binding, but here we'll use Log4J -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${version.slf4j.log4j}</version>
+        </dependency>
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
