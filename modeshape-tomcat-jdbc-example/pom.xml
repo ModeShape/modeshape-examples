@@ -29,7 +29,7 @@
         <version.cargo.plugin>1.4.8</version.cargo.plugin>
 
         <!-- Global dependency version information-->
-        <modeshape.version>4.0.0.Alpha4</modeshape.version>
+        <modeshape.version>4.0.0.Beta1</modeshape.version>
         <version.jta>4.17.19.Final</version.jta>
         <version.servlet.api>3.0.1</version.servlet.api>
         <version.weld.servlet>1.1.9.Final</version.weld.servlet>
