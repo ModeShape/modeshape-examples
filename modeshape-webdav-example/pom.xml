@@ -9,7 +9,7 @@
     <name>Example of a custom web application that exposes the ModeShape WebDAV endpoint</name>
     <description>
         A simple web application that overlays a custom repository configuration on top of the OOTB modeshape-web-jcr-webdav-war.
-		This is the idiomatic way in which projects can customize ModeShape with their own configuration and expose the WebDAV enpoint.
+		This is the idiomatic way in which projects can customize ModeShape with their own configuration and expose the WebDAV endpoint.
     </description>
 
     <properties>
@@ -127,6 +127,7 @@
         </pluginManagement>
         <plugins>
             <plugin>
+                <!--Exclude the default repo JSON config-->
                 <artifactId>maven-war-plugin</artifactId>
                 <configuration>
                     <overlays>

@@ -33,5 +33,6 @@
     <module>modeshape-federation-example</module>
     <module>modeshape-rest-example</module>
     <module>modeshape-webdav-example</module>
+    <module>modeshape-cmis-example</module>
   </modules>
 </project>
