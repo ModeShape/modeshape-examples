@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.modeshape.example</groupId>
+    <artifactId>modeshape-rest-example</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
+    <name>Example of a custom web application that exposes the ModeShape REST endpoint</name>
+    <description>
+        A simple web application that overlays a custom repository configuration on top of the OOTB modeshape-web-jcr-rest-war.
+		This is the idiomatic way in which projects can customize ModeShape with their own configuration and expose the REST enpoint.
+    </description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+
+        <!-- Maven plugin versions -->
+        <version.assembly.plugin>2.4</version.assembly.plugin>
+        <version.clean.plugin>2.5</version.clean.plugin>
+        <version.compiler.plugin>3.0</version.compiler.plugin>
+        <version.dependency.plugin>2.6</version.dependency.plugin>
+        <version.install.plugin>2.4</version.install.plugin>
+        <version.jar.plugin>2.4</version.jar.plugin>
+        <version.resources.plugin>2.6</version.resources.plugin>
+        <version.surefire.plugin>2.12.3</version.surefire.plugin>
+        <version.war.plugin>2.3</version.war.plugin>
+
+        <!-- Global dependency version information-->
+        <modeshape.version>4.0.0.Final</modeshape.version>
+		<jdbc.h2.version>1.2.124</jdbc.h2.version>
+        <version.log4j>1.2.16</version.log4j>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.modeshape.bom</groupId>
+                <artifactId>modeshape-bom-embedded</artifactId>
+                <version>${modeshape.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <!--This is the default WAR REST-Service which Maven will overlay with the custom files & dependencies from this project -->
+        <dependency>
+            <groupId>org.modeshape</groupId>
+            <artifactId>modeshape-web-jcr-rest-war</artifactId>
+            <type>war</type>
+            <scope>runtime</scope>
+        </dependency>
+        <!--This examples uses Infinispan's JDBC cache store, which requires C3P0 and a JDBC database driver -->
+        <dependency>
+            <groupId>org.infinispan</groupId>
+            <artifactId>infinispan-cachestore-jdbc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.modeshape</groupId>
+            <artifactId>modeshape-sequencer-images</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>c3p0</groupId>
+            <artifactId>c3p0</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${jdbc.h2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${version.log4j}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>${version.assembly.plugin}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>${version.clean.plugin}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${version.compiler.plugin}</version>
+                    <configuration>
+                        <showDeprecation>false</showDeprecation>
+                        <showWarnings>false</showWarnings>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>${version.dependency.plugin}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>${version.install.plugin}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>${version.jar.plugin}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${version.resources.plugin}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${version.surefire.plugin}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>${version.war.plugin}</version>
+                    <configuration>
+                        <failOnMissingWebXml>false</failOnMissingWebXml>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <overlays>
+                        <overlay>
+                            <id>exclude-default-config</id>
+                            <groupId>org.modeshape</groupId>
+                            <artifactId>modeshape-web-jcr-rest-war</artifactId>
+                            <excludes>
+                                <exclude>**/*.json</exclude>
+                            </excludes>
+                        </overlay>
+                    </overlays>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

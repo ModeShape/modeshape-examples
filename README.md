@@ -58,7 +58,7 @@ use APIs or configuration options that were introduced in subsequent versions):
 # Looking for ModeShape 3.x or 2.x examples?
 
 The code on the 'master' branch works against the latest ModeShape 4.x 
-(pre) release, but examples for ModeShape 3.x and 2.x are on different
+release, but examples for ModeShape 3.x and 2.x are on different
 branches. To get to those, use the Git `checkout` command to 
 switch branches:
 

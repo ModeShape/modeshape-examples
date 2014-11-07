@@ -1,0 +1,34 @@
+{
+    "name" : "sample",
+    "workspaces" : {
+        "default" : "default",
+        "allowCreation" : true ,
+        "initialContent" : {
+            "default" : "initial_content.xml"
+        }
+    },
+    "security" : {
+        "anonymous" : {
+            "roles" : ["readonly","readwrite","admin"],
+            "useOnFailedLogin" : false
+        }
+    },
+    "storage" : {
+        "cacheConfiguration" : "infinispan-configuration.xml",
+        "cacheName" : "sample",
+        "binaryStorage" : {
+            "type" : "file",
+            "directory": "../temp/modeshape_rest/binaries",
+            "minimumBinarySizeInBytes" : 999
+        }
+    },
+    "sequencing" : {
+        "sequencers" : {
+            // a custom sequencer via which we'll validate that the WAR dependencies are correctly configured
+            "Images sequencer" : {
+                "classname" : "ImageSequencer",
+                "pathExpression" : "default://imagesContainer[@image] => default:/sequenced/images"
+            }
+        }
+    }
+}

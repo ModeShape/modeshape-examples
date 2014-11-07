@@ -31,5 +31,6 @@
     <module>modeshape-spring-example</module>
     <module>modeshape-spring-security-example</module>
     <module>modeshape-federation-example</module>
+    <module>modeshape-rest-example</module>
   </modules>
 </project>
