@@ -3,13 +3,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.modeshape.example</groupId>
-    <artifactId>modeshape-rest-example</artifactId>
+    <artifactId>modeshape-webdav-example</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>Example of a custom web application that exposes the ModeShape REST endpoint</name>
+    <name>Example of a custom web application that exposes the ModeShape WebDAV endpoint</name>
     <description>
-        A simple web application that overlays a custom repository configuration on top of the OOTB modeshape-web-jcr-rest-war.
-		This is the idiomatic way in which projects can customize ModeShape with their own configuration and expose the REST enpoint.
+        A simple web application that overlays a custom repository configuration on top of the OOTB modeshape-web-jcr-webdav-war.
+		This is the idiomatic way in which projects can customize ModeShape with their own configuration and expose the WebDAV enpoint.
     </description>
 
     <properties>
@@ -47,10 +47,10 @@
     </dependencyManagement>
 
     <dependencies>
-        <!--This is the default WAR REST-Service which Maven will overlay with the custom files & dependencies from this project -->
+        <!--This is the default WAR WebDAV-Service which Maven will overlay with the custom files & dependencies from this project -->
         <dependency>
             <groupId>org.modeshape</groupId>
-            <artifactId>modeshape-web-jcr-rest-war</artifactId>
+            <artifactId>modeshape-web-jcr-webdav-war</artifactId>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
@@ -58,11 +58,7 @@
         <dependency>
             <groupId>org.infinispan</groupId>
             <artifactId>infinispan-cachestore-jdbc</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.modeshape</groupId>
-            <artifactId>modeshape-sequencer-images</artifactId>
-        </dependency>
+        </dependency>      
         <dependency>
             <groupId>c3p0</groupId>
             <artifactId>c3p0</artifactId>
@@ -134,11 +130,10 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <configuration>
                     <overlays>
-                        <!--Exclude the default repository JSON config from the default Modeshape WAR-->
                         <overlay>
                             <id>exclude-default-config</id>
                             <groupId>org.modeshape</groupId>
-                            <artifactId>modeshape-web-jcr-rest-war</artifactId>
+                            <artifactId>modeshape-web-jcr-webdav-war</artifactId>
                             <excludes>
                                 <exclude>**/*.json</exclude>
                             </excludes>

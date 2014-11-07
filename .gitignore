@@ -1,5 +1,6 @@
 # ignore Maven generated target folders
 target
+overlays
 
 # ignore eclipse files and folders
 .project

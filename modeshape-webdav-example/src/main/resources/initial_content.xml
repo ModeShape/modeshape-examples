@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0">
+    <folder1 jcr:mixinTypes="mix:created, mix:lastModified" jcr:primaryType="nt:folder">
+        <file1 jcr:primaryType="nt:file">
+            <jcr:content jcr:primaryType="nt:resource">
+                <jcr:data type="binary">caution.gif</jcr:data>
+            </jcr:content>
+        </file1>
+        <file2 jcr:primaryType="nt:file">
+            <jcr:content jcr:primaryType="nt:resource">
+                <jcr:data type="binary">caution.gif</jcr:data>
+            </jcr:content>
+        </file2>
+    </folder1>
+    <folder2 jcr:mixinTypes="mix:created, mix:lastModified" jcr:primaryType="nt:folder">
+        <file1 jcr:primaryType="nt:file">
+            <jcr:content jcr:primaryType="nt:resource">
+                <jcr:data type="binary">caution.gif</jcr:data>
+            </jcr:content>
+        </file1>
+        <file2 jcr:primaryType="nt:file">
+            <jcr:content jcr:primaryType="nt:resource">
+                <jcr:data type="binary">caution.gif</jcr:data>
+            </jcr:content>
+        </file2>
+    </folder2>
+</jcr:root>

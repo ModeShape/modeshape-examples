@@ -5,8 +5,6 @@
     <display-name>ModeShape JCR RESTful Interface Custom Configuration</display-name>
 
     <!--
-         This servlet uses the ServiceLoader to find a RepositoryFactory that returns a non-null
-         Repository instance. (This is the idiomatic way to obtain a JCR Repository.)
          This parameter defines the location of the configuration file, or can specify
          the JNDI location of the Repository or Repositories implementation.
          (If the object in JNDI is a ModeShape Repositories instance, then this web application
@@ -15,6 +13,8 @@
          If a file is specified, ModeShape will first check for a file at this path in the filesystem.
          If not file exists at this path, ModeShape will attempt to load this as a resource
          from the classpath.
+
+         The JNDI location can be specified in the form jndi:<jndi_name>
      -->
     <context-param>
         <param-name>org.modeshape.jcr.URL</param-name>
