@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app>
+    <display-name>ModeShape JCR WebDAV Interface Custom Configuration</display-name>
+
+    <!--
+         This parameter defines the location of the configuration file, or can specify
+         the JNDI location of the Repository or Repositories implementation.
+         (If the object in JNDI is a ModeShape Repositories instance, then this web application
+         will support multiple repositories.)
+
+         If a file is specified, ModeShape will first check for a file at this path in the filesystem.
+         If not file exists at this path, ModeShape will attempt to load this as a resource
+         from the classpath.
+
+         The JNDI location can be specified in the form jndi:<jndi_name>
+     -->
+    <context-param>
+        <param-name>org.modeshape.jcr.URL</param-name>
+        <param-value>file:/my-repository-config.json</param-value>
+    </context-param>
+
+    <!--
+         Nodes with any of the primary node types in this comma-delimited list will be treated by the
+         WebDAV implementation as content nodes.  The value below is the default value for this
+         parameter.  That is, if this init parameter is omitted, the value below will be used by default.
+     -->
+    <context-param>
+        <param-name>org.modeshape.web.jcr.webdav.CONTENT_PRIMARY_TYPE_NAMES</param-name>
+        <param-value>nt:resource, mode:resource</param-value>
+    </context-param>
+
+    <!--
+         Nodes with any of the primary node types in this comma-delimited list will be treated by the
+         WebDAV implementation as resource (file) nodes.  The value below is the default value for this
+         parameter.  That is, if this init parameter is omitted, the value below will be used by default.
+     -->
+    <context-param>
+        <param-name>org.modeshape.web.jcr.webdav.RESOURCE_PRIMARY_TYPE_NAMES</param-name>
+        <param-value>nt:file</param-value>
+    </context-param>
+
+    <!--
+         Each folder created through the WebDAV servlet will be created as a node with the primary node
+         type below.  The value below is the default value for this parameter.  That is, if this init
+         parameter is omitted, the value below will be used by default.
+     -->
+    <context-param>
+        <param-name>org.modeshape.web.jcr.webdav.NEW_FOLDER_PRIMARY_TYPE_NAME</param-name>
+        <param-value>nt:folder</param-value>
+    </context-param>
+
+    <!--
+         Each resource (file created through the WebDAV servlet will be created as a node with the primary
+         node type below.  The value below is the default value for this parameter.  That is, if this init
+         parameter is omitted, the value below will be used by default.
+     -->
+    <context-param>
+        <param-name>org.modeshape.web.jcr.webdav.NEW_RESOURCE_PRIMARY_TYPE_NAME</param-name>
+        <param-value>nt:file</param-value>
+    </context-param>
+
+    <!--
+         Content created through the WebDAV servlet will be created as a node with the primary node
+         type below.  The value below is the default value for this parameter.  That is, if this init
+         parameter is omitted, the value below will be used by default.
+     -->
+    <context-param>
+        <param-name>org.modeshape.web.jcr.webdav.NEW_CONTENT_PRIMARY_TYPE_NAME</param-name>
+        <param-value>nt:resource</param-value>
+    </context-param>
+
+    <!-- Required parameter for ModeShape WebDAV - should not be modified -->
+    <listener>
+        <listener-class>org.modeshape.web.jcr.ModeShapeJcrDeployer</listener-class>
+    </listener>
+
+    <!-- Required WebDAV servlet - should not be modified -->
+    <servlet>
+        <servlet-name>WebDAV</servlet-name>
+        <servlet-class>org.modeshape.web.jcr.webdav.ModeShapeWebdavServlet</servlet-class>
+
+        <!--
+              The webdav library requires this parameter to be present, but does not use it.
+          -->
+        <init-param>
+            <param-name>rootpath</param-name>
+            <param-value>.</param-value>
+        </init-param>
+    </servlet>
+
+    <!-- Required parameter for ModeShape WebDAV - should not be modified -->
+    <servlet-mapping>
+        <servlet-name>WebDAV</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
+</web-app>

@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app>
+    <display-name>ModeShape JCR RESTful Interface Custom Configuration</display-name>
+
+    <!--
+         This parameter defines the location of the configuration file, or can specify
+         the JNDI location of the Repository or Repositories implementation.
+         (If the object in JNDI is a ModeShape Repositories instance, then this web application
+         will support multiple repositories.)
+
+         If a file is specified, ModeShape will first check for a file at this path in the filesystem.
+         If not file exists at this path, ModeShape will attempt to load this as a resource
+         from the classpath.
+
+         The JNDI location can be specified in the form jndi:<jndi_name>
+     -->
+    <context-param>
+        <param-name>org.modeshape.jcr.URL</param-name>
+        <param-value>file:/my-repository-config.json</param-value>
+    </context-param>
+
+    <!--
+         This parameter defines the JAX-RS application class, which is really just a metadata class
+         that lets the JAX-RS engine (RESTEasy in this case) know which classes implement pieces
+         of the JAX-RS specification like exception handling and resource serving.
+
+         This should not be modified.
+      -->
+    <context-param>
+        <param-name>javax.ws.rs.Application</param-name>
+        <param-value>org.modeshape.web.jcr.rest.JcrApplication</param-value>
+    </context-param>
+
+    <!-- Required parameter for RESTEasy - should not be modified -->
+    <listener>
+        <listener-class>org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap</listener-class>
+    </listener>
+
+    <!-- Required parameter for ModeShape REST - should not be modified -->
+    <listener>
+        <listener-class>org.modeshape.web.jcr.ModeShapeJcrDeployer</listener-class>
+    </listener>
+
+    <!-- Required parameter for RESTEasy - should not be modified -->
+    <servlet>
+        <servlet-name>Resteasy</servlet-name>
+        <servlet-class>org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>
+    </servlet>
+
+    <!-- Required parameter for ModeShape REST - should not be modified -->
+    <servlet-mapping>
+        <servlet-name>Resteasy</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
+</web-app>
