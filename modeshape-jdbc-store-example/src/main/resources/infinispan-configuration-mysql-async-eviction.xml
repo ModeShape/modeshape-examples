@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<infinispan
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:infinispan:config:6.0 http://www.infinispan.org/schemas/infinispan-config-6.0.xsd
+                            urn:infinispan:config:jdbc:6.0 http://www.infinispan.org/schemas/infinispan-cachestore-jdbc-config-6.0.xsd"
+	xmlns="urn:infinispan:config:6.0">
+	<global>
+		<globalJmxStatistics enabled="false" allowDuplicateDomains="true"/>
+	</global>
+	<namedCache name="contentRepository">
+		<persistence passivation="false">
+			<stringKeyedJdbcStore xmlns="urn:infinispan:config:jdbc:6.0"
+								  fetchPersistentState="false"
+								  ignoreModifications="false"
+								  purgeOnStartup="false">
+				
+				<!--
+				<dataSource jndiUrl="jdbc/myds" />
+				-->
+				<connectionPool
+					connectionUrl="jdbc:mysql://localhost:3306/mydb"
+					driverClass="com.mysql.jdbc.Driver"
+					username="user"
+					password="pass"/>
+				<!-- When using MySsql it's important to use a cs collation for the idColumn. Otherwise you might run into issues when defining case sensitive nodeTypes -->
+				<stringKeyedTable
+					prefix="ISPN_STRING_TABLE"
+					createOnStart="true"
+					dropOnExit="false">
+					<idColumn name="ID_COLUMN" type="VARCHAR(255) CHARACTER SET latin1 COLLATE latin1_general_cs"/>
+					<dataColumn name="DATA_COLUMN" type="LONGBLOB"/>
+					<timestampColumn name="TIMESTAMP_COLUMN" type="BIGINT"/>
+				</stringKeyedTable>
+				<!-- write behind configuration -->
+				<async enabled="true"/>
+			</stringKeyedJdbcStore>
+		</persistence>
+		<eviction maxEntries="8192" strategy="LIRS"/>
+		<transaction
+			transactionManagerLookupClass="org.infinispan.transaction.lookup.GenericTransactionManagerLookup"
+			transactionMode="TRANSACTIONAL"
+			lockingMode="OPTIMISTIC" />
+	</namedCache>
+</infinispan>
