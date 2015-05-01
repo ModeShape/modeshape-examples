@@ -16,7 +16,7 @@
         <!--
         Global dependency version information
         -->
-        <modeshape.version>4.2.0.Final</modeshape.version>
+        <modeshape.version>4.3-SNAPSHOT</modeshape.version>
         <!--
         Maven plugin versions
         -->
