@@ -13,7 +13,7 @@
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
 
-        <modeshape.version>4.3-SNAPSHOT</modeshape.version>
+        <modeshape.version>4.3.0.Final</modeshape.version>
 
         <!--dependency versions-->
         <version.log4j>1.2.16</version.log4j>

@@ -15,9 +15,8 @@
 		<!--
 		Global dependency version information
 		-->
-        <modeshape.version>4.3-SNAPSHOT</modeshape.version>
+        <modeshape.version>4.3.0.Final</modeshape.version>
         <jdbc.h2.version>1.2.124</jdbc.h2.version>
-        <c3p0.version>0.9.1.2</c3p0.version>
         <junit.version>4.11</junit.version>
 		<!--
 		Maven plugin versions
@@ -66,9 +65,8 @@
             <artifactId>infinispan-cachestore-jdbc</artifactId>
         </dependency>
         <dependency>
-            <groupId>c3p0</groupId>
+            <groupId>com.mchange</groupId>
             <artifactId>c3p0</artifactId>
-            <version>${c3p0.version}</version>
         </dependency>
         <dependency>
             <groupId>com.h2database</groupId>

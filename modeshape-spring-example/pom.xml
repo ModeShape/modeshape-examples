@@ -28,7 +28,7 @@
         <version.war.plugin>2.3</version.war.plugin>
 
         <!-- Global dependency version information-->
-        <modeshape.version>4.3-SNAPSHOT</modeshape.version>
+        <modeshape.version>4.3.0.Final</modeshape.version>
         <version.servlet.api>2.5</version.servlet.api>
         <version.spring>3.2.3.RELEASE</version.spring>
         <version.jta>1.1</version.jta>
