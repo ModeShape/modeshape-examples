@@ -3,17 +3,17 @@
 This is a self-contained Maven project that shows how to implement and plug into ModeShape a custom security provider which 
 performs both authorization and authentication. 
 There are two important classes for this example:
-- The [PicketBoxSecurityProvider](modeshape-custom-security-example/src/main/java/org/modeshape/example/security/PicketBoxSecurityProvider.java)
+- The [PicketBoxSecurityProvider](src/main/java/org/modeshape/example/security/PicketBoxSecurityProvider.java)
 class is a simple implementation of a [PicketBox](http://picketbox.jboss.org/) authorization and authentication provider which 
-plugs into the [ModeShape configuration](modeshape-custom-security-example/src/main/resources/my-repository-config.json) allowing
+plugs into the [ModeShape configuration](src/main/resources/my-repository-config.json) allowing
 custom logic whenever an authentication operation is performed (via `session.login`) or whenever authorization checks are performed
 for various repository operations (for example `node.add`). This is essentially an example very similar to the one described 
 by the [ModeShape documentation](https://docs.jboss.org/author/display/MODE40/Authentication+and+authorization).
 
-- The [ModeShapeExample](modeshape-custom-security-example/src/main/java/org/modeshape/example/security/ModeShapeExample.java) 
+- The [ModeShapeExample](src/main/java/org/modeshape/example/security/ModeShapeExample.java) 
 class has a 'main(...)' method that loads a ModeShape configuration as a resource on the classpath, uses that configuration to build a 
 ModeShapeEngine instance, starts the engine, attempts to authenticate and then performs various repository operations which 
-require authorization on a number of different users as defined by the [Picketbox configuration](modeshape-custom-security-example/src/main/resources/security.conf.xml)
+require authorization on a number of different users as defined by the [Picketbox configuration](src/main/resources/security.conf.xml)
 
 This project is self-contained and can be built at the top level 
 of your local clone of the Git repository, or by simply building 
