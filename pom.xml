@@ -34,5 +34,6 @@
     <module>modeshape-rest-example</module>
     <module>modeshape-webdav-example</module>
     <module>modeshape-cmis-example</module>
+	<module>modeshape-custom-security-example</module>
   </modules>
 </project>
