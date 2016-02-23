@@ -22,17 +22,4 @@
             "useOnFailedLogin" : false
         }
     },
-    "query" : {
-        "enabled" : true,
-        "indexStorage" : {
-            "type" : "filesystem",
-            "location" : "${java.io.tmpdir}/modeshape_spring_sample/indexes"
-        },
-        "indexing" : {
-            "rebuildOnStartup" : {
-                "when" : "if_missing",
-                "mode" : "async"
-            }
-        }
-    }
 }

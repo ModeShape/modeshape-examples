@@ -28,18 +28,5 @@
                 "classname" : "org.modeshape.example.springsecurity.jcr.security.SpringSecurityProvider"
             }
         ]
-    },
-    "query" : {
-        "enabled" : true,
-        "indexStorage" : {
-            "type" : "filesystem",
-            "location" : "${java.io.tmpdir}/modeshape_spring_security_sample/indexes"
-        },
-        "indexing" : {
-            "rebuildOnStartup" : {
-                "when" : "if_missing",
-                "mode" : "async"
-            }
-        }
     }
 }
