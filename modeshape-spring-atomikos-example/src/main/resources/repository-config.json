@@ -1,0 +1,27 @@
+{
+    "name" : "sample",
+    "jndiName" : "",
+    "monitoring" : {
+        "enabled" : true
+    },
+    "storage" : {
+        "transactionManagerLookup" : {
+            "name" : "org.modeshape.example.spring.jcr.AtomikosTransactionManagerLookup"
+        },
+        "binaryStorage" : {
+            "type" : "file",
+            "directory": "${java.io.tmpdir}/modeshape_spring_sample/binaries",
+            "minimumBinarySizeInBytes" : 40
+        }
+    },
+    "workspaces" : {
+        "default" : "default",
+        "allowCreation" : true
+    },
+    "security" : {
+        "anonymous" : {
+            "roles" : ["readonly","readwrite","admin"],
+            "useOnFailedLogin" : false
+        }
+    }
+}

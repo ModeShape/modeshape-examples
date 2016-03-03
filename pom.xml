@@ -22,13 +22,11 @@
     <module>modeshape-slf4j-logging-example</module>
     <module>modeshape-sequencing-example</module>
     <module>modeshape-ddl-parser-example</module>
-    <module>modeshape-filesystem-store-example</module>
     <module>modeshape-jdbc-store-example</module>
-    <module>modeshape-leveldb-store-example</module>
     <module>modeshape-jca-example</module>
     <module>modeshape-tomcat-jsf-example</module>
     <module>modeshape-tomcat-jdbc-example</module>
-    <module>modeshape-spring-example</module>
+    <module>modeshape-spring-atomikos-example</module>
     <module>modeshape-spring-security-example</module>
     <module>modeshape-federation-example</module>
     <module>modeshape-rest-example</module>

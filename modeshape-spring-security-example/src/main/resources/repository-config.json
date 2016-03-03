@@ -1,12 +1,10 @@
 {
     "name" : "sample",
-	 "jndiName": "",
+    "jndiName" : "",
     "monitoring" : {
         "enabled" : true
     },
     "storage" : {
-        "cacheName" : "sampleRepository",
-        "cacheConfiguration" : "infinispan-config.xml",
         "binaryStorage" : {
             "type" : "file",
             "directory": "${java.io.tmpdir}/modeshape_spring_security_sample/binaries",

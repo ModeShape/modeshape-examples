@@ -12,12 +12,16 @@
         }
     },
     "storage" : {
-        "cacheConfiguration" : "infinispan-configuration.xml",
-        "cacheName" : "persisted_repository",
+        "persistence" : {
+            "type" : "db",
+            "connectionUrl": "jdbc:h2:file:./target/content/db",
+            "createOnStart" : true,
+            "dropOnExit" : true
+        },
         "binaryStorage" : {
             "type" : "file",
             "directory": "target/content/binaries",
             "minimumBinarySizeInBytes" : 999
         }
-    },
+    }
 }

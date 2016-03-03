@@ -12,8 +12,6 @@
         }
     },
     "storage" : {
-        "cacheConfiguration" : "infinispan-configuration.xml",
-        "cacheName" : "persistentRepository",
         "binaryStorage" : {
             "type" : "file",
             "directory": "target/federation_repository/binaries",
@@ -25,7 +23,6 @@
             "classname" : "filesystem",
             "directoryPath" : "target/files",
             "extraPropertiesStorage" : "json",
-            "cacheTtlSeconds" : 1,
             "projections" : [
                 "default:/rootFolder => /"
             ]

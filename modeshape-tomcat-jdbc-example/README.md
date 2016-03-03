@@ -10,7 +10,7 @@ a JSF 2 application while storing the data in a Database.
 System requirements
 -------------------
 
-All you need to build this project is Java 7.0 (Java SDK 1.7) or better, Maven 3.0 or better.
+All you need to build this project is Java 8.0 (Java SDK 1.8) or better, Maven 3.0 or better.
 The application this project produces is designed to be run on Tomcat 7.x or greater.
 
 Build and Deploy the Example automatically via Maven
@@ -79,8 +79,7 @@ ModeShape is an open source implementation of the JCR 2.0
 standard API. To your applications, ModeShape looks and behaves like a 
 regular JCR repository. Applications can search, query, navigate, change, 
 version, listen for changes, etc. But ModeShape can store that content 
-in a variety of back-end stores (including relational databases, Infinispan 
-data grids, JBoss Cache, etc.), or it can access and update existing content 
+in a variety of back-end stores or it can access and update existing content 
 from *other* kinds of systems (including file systems, SVN repositories, 
 JDBC database metadata, and other JCR repositories). ModeShape's connector 
 architecture means that you can write custom connectors to access any 

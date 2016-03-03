@@ -9,7 +9,7 @@ logging frameworks:
 1. [SLF4J](http://slf4j.org)
 1. [Log4J](http://logging.apache.org/log4j)
 1. A custom logging framework
-1. [Java Util Logging](http://docs.oracle.com/javase/6/docs/technotes/guides/logging/index.html)
+1. [Java Util Logging](http://docs.oracle.com/javase/8/docs/technotes/guides/logging/index.html)
 
 ModeShape first looks on the classpath to find the SLF4J API, and if 
 so uses that. If it is not available, ModeShape then looks
@@ -59,8 +59,7 @@ ModeShape is an open source implementation of the JCR 2.0
 standard API. To your applications, ModeShape looks and behaves like a 
 regular JCR repository. Applications can search, query, navigate, change, 
 version, listen for changes, etc. But ModeShape can store that content 
-in a variety of back-end stores (including relational databases, Infinispan 
-data grids, JBoss Cache, etc.), or it can access and update existing content 
+in a variety of back-end stores or it can access and update existing content 
 from *other* kinds of systems (including file systems, SVN repositories, 
 JDBC database metadata, and other JCR repositories). ModeShape's connector 
 architecture means that you can write custom connectors to access any 

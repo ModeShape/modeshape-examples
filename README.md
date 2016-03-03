@@ -6,8 +6,7 @@ ModeShape is an open source implementation of the JCR 2.0
 ModeShape looks and behaves like a regular JCR repository. Applications 
 can search, query, navigate, change, version, listen for changes, etc. 
 But ModeShape can store that content in a variety of back-end stores 
-(including relational databases, Infinispan data grids, JBoss Cache, 
-etc.), or it can access and update existing content from *other* kinds 
+or it can access and update existing content from *other* kinds 
 of systems (including file systems, SVN repositories, JDBC database 
 metadata, and other JCR repositories). ModeShape's connector architecture 
 means that you can write custom connectors to access any kind of system. 
@@ -48,25 +47,18 @@ or you can build an individual example. For instance:
 See [this ModeShape community article](http://community.jboss.org/wiki/ModeShapeandMaven) 
 for help on how to install Maven 3.
 
-By default, these examples use the latest released version of ModeShape, but
-you can easily build them to use earlier versions (as long as the examples don't
-use APIs or configuration options that were introduced in subsequent versions):
+# Looking for ModeShape 4.x or 3.x examples?
 
-    $ mvn clean install -s settings.xml -Dmodeshape.version=3.2.0.Final
-
-
-# Looking for ModeShape 3.x or 2.x examples?
-
-The code on the 'master' branch works against the latest ModeShape 4.x 
-release, but examples for ModeShape 3.x and 2.x are on different
+The code on the 'master' branch works against the latest ModeShape 5.x 
+release, but examples for ModeShape 4.x and 3.x are on different
 branches. To get to those, use the Git `checkout` command to 
 switch branches:
 
-    $ git checkout 3.x
+    $ git checkout 4.x
     
 or
 
-    $ git checkout 2.x
+    $ git checkout 3.x
 
 and then use the Maven command to build the examples (same as above).
 

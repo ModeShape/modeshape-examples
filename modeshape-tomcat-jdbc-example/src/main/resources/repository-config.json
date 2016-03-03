@@ -1,11 +1,14 @@
 {
     "name" : "JDBCRepository",
+    "jndiName" : "",
     "monitoring" : {
         "enabled" : true
     },
     "storage" : {
-        "cacheName" : "jdbcRepository",
-        "cacheConfiguration" : "infinispan-config.xml",
+        "persistence" : {
+            "type" : "db",
+            "datasourceJNDI" : "${datasource.jndi}"
+        },
         "binaryStorage": {
             "type" : "database",
             "dataSourceJndiName" : "java:comp/env/jdbc/modeshape",

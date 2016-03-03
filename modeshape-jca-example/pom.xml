@@ -1,6 +1,12 @@
 <?xml version="1.0"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.jboss</groupId>
+        <artifactId>jboss-parent</artifactId>
+        <version>20</version>
+        <relativePath></relativePath>
+    </parent>
     <groupId>org.modeshape.example</groupId>
     <artifactId>modeshape-jca-example</artifactId>
     <packaging>war</packaging>
@@ -8,16 +14,12 @@
     <description>A simple example application that uses JCA to access repository.</description>
     <version>1.0-SNAPSHOT</version>
     <properties>
-        <!-- Instruct the build to use only UTF-8 encoding for source code -->
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.7</maven.compiler.source>
-        <maven.compiler.target>1.7</maven.compiler.target>
-
-        <modeshape.version>4.5.0.Final</modeshape.version>
-
+        <cargo.container>jetty9x</cargo.container>
+        <version.cargo.plugin>1.4.16</version.cargo.plugin>
         <!--dependency versions-->
-        <version.log4j>1.2.16</version.log4j>
-        <version.servlet.api>2.5</version.servlet.api>
+        <version.modeshape>5.0-SNAPSHOT</version.modeshape>
+        <version.junit>4.11</version.junit>
+        <version.org.jboss.spec.javax.servlet.jboss-servlet-api_3.1_spec>1.0.0.Final</version.org.jboss.spec.javax.servlet.jboss-servlet-api_3.1_spec>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -28,7 +30,7 @@
             <dependency>
                 <groupId>org.modeshape.bom</groupId>
                 <artifactId>modeshape-bom-embedded</artifactId>
-                <version>${modeshape.version}</version>
+                <version>${version.modeshape}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -40,22 +42,95 @@
             <artifactId>jcr</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+        </dependency>
+        <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
-            <version>${version.log4j}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.spec.javax.servlet</groupId>
+            <artifactId>jboss-servlet-api_3.1_spec</artifactId>
+            <version>${version.org.jboss.spec.javax.servlet.jboss-servlet-api_3.1_spec}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <version>${version.servlet.api}</version>
-            <scope>provided</scope>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${version.junit}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.cargo</groupId>
+                <artifactId>cargo-maven2-plugin</artifactId>
+                <version>${version.cargo.plugin}</version>
+                <executions>
+                    <execution>
+                        <id>start-container</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>start</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>stop-container</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>stop</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <skip>${skipTests}</skip>
+                    <container>
+                        <containerId>${cargo.container}</containerId>
+                        <log>${project.build.directory}/cargo.log</log>
+                        <home>${project.build.directory}/cargo</home>
+                        <type>embedded</type>
+                    </container>
+                    <configuration >
+                        <properties>
+                            <cargo.logging>high</cargo.logging>
+                            <cargo.servlet.users>admin:admin:connect,readwrite,admin|unauthorized:password:bogus</cargo.servlet.users>
+                            <cargo.servlet.port>8090</cargo.servlet.port>
+                        </properties>
+                    </configuration>
+                    <deployables>
+                        <deployable>
+                            <properties>
+                                <context>${project.build.finalName}</context>
+                            </properties>
+                        </deployable>
+                    </deployables>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
     <repositories>
         <repository>
-            <id>JBoss-Releases</id>
-            <url>https://repository.jboss.org/nexus/content/repositories/releases/</url>
+            <id>JBoss</id>
+            <url>https://repository.jboss.org/nexus/content/groups/public/</url>
         </repository>
     </repositories>
 </project>

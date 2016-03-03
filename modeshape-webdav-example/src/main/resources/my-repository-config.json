@@ -1,5 +1,6 @@
 {
     "name" : "sample",
+    "jndiName" : "",
     "workspaces" : {
         "default" : "default",
         "allowCreation" : true ,
@@ -14,11 +15,9 @@
         }
     },
     "storage" : {
-        "cacheConfiguration" : "infinispan-configuration.xml",
-        "cacheName" : "sample",
         "binaryStorage" : {
             "type" : "file",
-            "directory": "../temp/modeshape_webdav/binaries",
+            "directory": "${java.io.tmpdir}/modeshape_webdav/binaries",
             "minimumBinarySizeInBytes" : 999
         }
     }
