@@ -3,8 +3,7 @@
 This is a self-contained Maven project that shows how to embed 
 ModeShape within a simple J2SE application. The 
 [ModeShapeExample](modeshape-embedded-example/src/main/java/org/modeshape/example/embedded/ModeShapeExample.java) class has a 'main(...)' method that loads a ModeShape configuration 
-as a resource on the classpath, uses that configuration to build a 
-ModeShapeEngine instance, starts the engine, and obtains a JCR Session 
+as a resource on the classpath, uses that configuration to build a  ModeShapeEngine instance, starts the engine, and obtains a JCR Session 
 to the repository.
 
 This project is self-contained and can be built at the top level 
@@ -23,8 +22,7 @@ ModeShape is an open source implementation of the JCR 2.0
 standard API. To your applications, ModeShape looks and behaves like a 
 regular JCR repository. Applications can search, query, navigate, change, 
 version, listen for changes, etc. But ModeShape can store that content 
-in a variety of back-end stores (including relational databases, Infinispan 
-data grids, JBoss Cache, etc.), or it can access and update existing content 
+in a variety of back-end stores or it can access and update existing content 
 from *other* kinds of systems (including file systems, SVN repositories, 
 JDBC database metadata, and other JCR repositories). ModeShape's connector 
 architecture means that you can write custom connectors to access any 

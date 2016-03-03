@@ -4,8 +4,6 @@
         "enabled" : true
     },
     "storage" : {
-        "cacheName" : "sampleRepository",
-        "cacheConfiguration" : "infinispan-config.xml",
         "binaryStorage" : {
             "type" : "file",
             "directory": "${java.io.tmpdir}/modeshape_jsf_sample/binaries",

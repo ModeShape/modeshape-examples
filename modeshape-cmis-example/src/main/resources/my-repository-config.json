@@ -1,5 +1,6 @@
 {
     "name" : "sample",
+    "jndiName" : "",
     "workspaces" : {
         "default" : "default",
         "allowCreation" : true ,
@@ -14,8 +15,7 @@
         }
     },
     "storage" : {
-        "cacheConfiguration" : "infinispan-configuration.xml",
-        "cacheName" : "sample",
+        //the default persistence is H2 in memory...
         "binaryStorage" : {
             "type" : "file",
             "directory": "../temp/modeshape_cmis/binaries",

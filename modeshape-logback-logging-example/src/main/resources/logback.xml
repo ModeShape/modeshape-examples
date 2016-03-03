@@ -12,6 +12,7 @@
     <appender-ref ref="STDOUT" />
   </root>
   <!-- Set up the default logging to be INFO level, then override specific units -->
+  <logger name="com.zaxxer.hikari" level="WARN" />
   <logger name="org.modeshape" level="INFO" />
   <logger name="org.modeshape.example" level="DEBUG" />
 </configuration>
