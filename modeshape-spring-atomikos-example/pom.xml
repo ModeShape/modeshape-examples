@@ -19,7 +19,7 @@
 
     <properties>
         <!-- Global dependency version information-->
-        <version.modeshape>5.0-SNAPSHOT</version.modeshape>
+        <version.modeshape>5.0.0.Final</version.modeshape>
         <version.org.jboss.spec.javax.servlet.jboss-servlet-api_3.1_spec>1.0.0.Final</version.org.jboss.spec.javax.servlet.jboss-servlet-api_3.1_spec>
         <version.spring>4.0.3.RELEASE</version.spring>
         <version.jsp>2.2</version.jsp>

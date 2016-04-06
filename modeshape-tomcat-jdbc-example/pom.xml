@@ -22,7 +22,7 @@
         <version.cargo.plugin>1.4.8</version.cargo.plugin>
 
         <!-- Global dependency version information-->
-        <version.modeshape>5.0-SNAPSHOT</version.modeshape>
+        <version.modeshape>5.0.0.Final</version.modeshape>
         <version.servlet.api>3.0.1</version.servlet.api>
         <version.weld.servlet>1.1.9.Final</version.weld.servlet>
         <version.jsf.api>2.0</version.jsf.api>

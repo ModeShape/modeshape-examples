@@ -15,7 +15,7 @@
         }
     },
     "storage" : {
-        //the default persistence is H2 in memory...
+        //the default persistence is in memory...
         "binaryStorage" : {
             "type" : "file",
             "directory": "../temp/modeshape_cmis/binaries",
