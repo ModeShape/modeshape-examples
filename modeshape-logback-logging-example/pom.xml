@@ -14,7 +14,7 @@
 	<description>A simple self-contained example application that creates an embedded ModeShape engine but uses the LogBack logging factory.</description>
 	<version>1.0-SNAPSHOT</version>
 	<properties>
-        <version.modeshape>5.0.0.Final</version.modeshape>
+        <version.modeshape>5.1.0.Final</version.modeshape>
         <!--dependency versions-->
         <version.logback>0.9.29</version.logback>
         <version.junit>4.11</version.junit>
