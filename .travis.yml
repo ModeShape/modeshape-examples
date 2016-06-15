@@ -1,4 +1,5 @@
 language: java
+install: true
 script: mvn -s settings.xml clean install
 jdk:
   - oraclejdk8
