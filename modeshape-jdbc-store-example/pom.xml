@@ -14,7 +14,7 @@
     <description>A simple example application that creates an embedded ModeShape engine using local H2 JDBC database for storage, and the file system for indexes and binaries.</description>
     <version>1.0-SNAPSHOT</version>
     <properties>
-        <version.modeshape>5.1.0.Final</version.modeshape>
+        <version.modeshape>5.2.0.Final</version.modeshape>
         <version.junit>4.11</version.junit>
     </properties>
 

@@ -15,7 +15,7 @@
     <version>1.0-SNAPSHOT</version>
     <properties>
 		<!--dependency versions-->
-        <modeshape.version>5.1.0.Final</modeshape.version>
+        <modeshape.version>5.2.0.Final</modeshape.version>
         <version.junit>4.11</version.junit>
     </properties>
 

@@ -12,7 +12,10 @@
         "anonymous" : {
             "roles" : ["readonly","readwrite","admin"],
             "useOnFailedLogin" : false
-        }
+        }, 
+        "providers" : [
+            { "classname" : "servlet" }
+        ]
     },
     "storage" : {
         //the default persistence is in memory...

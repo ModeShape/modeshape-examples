@@ -15,8 +15,12 @@
  */
 
 import static org.junit.Assert.assertEquals;
+
+import java.net.Authenticator;
 import java.net.HttpURLConnection;
+import java.net.PasswordAuthentication;
 import java.net.URL;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -24,7 +28,16 @@ import org.junit.Test;
  * 
  * @author Horia Chiorean (hchiorea@redhat.com)
  */
-public class CMISExampleIT {
+public class CMISExampleIT {        
+    
+    @BeforeClass
+    public static void beforeClass() {
+        Authenticator.setDefault(new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication("admin", "admin".toCharArray());
+            }
+        });        
+    }
 
     @Test
     public void shouldAccessInitialPage() throws Exception {

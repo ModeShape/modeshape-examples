@@ -14,7 +14,7 @@
 	<description>A simple self-contained example application that creates an embedded ModeShape engine but uses the JDK logger.</description>
 	<version>1.0-SNAPSHOT</version>
 	<properties>
-        <version.modeshape>5.1.0.Final</version.modeshape>
+        <version.modeshape>5.2.0.Final</version.modeshape>
         <!--dependency versions-->
         <version.junit>4.11</version.junit>
 	</properties>

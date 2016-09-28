@@ -17,7 +17,7 @@
         <cargo.container>jetty9x</cargo.container>
         <version.cargo.plugin>1.4.16</version.cargo.plugin>
         <!--dependency versions-->
-        <version.modeshape>5.1.0.Final</version.modeshape>
+        <version.modeshape>5.2.0.Final</version.modeshape>
         <version.junit>4.11</version.junit>
         <version.org.jboss.spec.javax.servlet.jboss-servlet-api_3.1_spec>1.0.0.Final</version.org.jboss.spec.javax.servlet.jboss-servlet-api_3.1_spec>
     </properties>
