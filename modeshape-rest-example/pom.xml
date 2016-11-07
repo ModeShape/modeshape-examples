@@ -29,7 +29,7 @@
         <version.war.plugin>2.3</version.war.plugin>
 
         <!-- Global dependency version information-->
-        <modeshape.version>4.6.1.Final</modeshape.version>
+        <modeshape.version>4.6.2.Final</modeshape.version>
 		<jdbc.h2.version>1.2.124</jdbc.h2.version>
         <version.log4j>1.2.16</version.log4j>
     </properties>
