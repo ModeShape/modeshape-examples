@@ -21,7 +21,7 @@
     <properties>
         <version.cargo.plugin>1.4.16</version.cargo.plugin>
         <!-- Global dependency version information-->
-        <version.modeshape>5.2.0.Final</version.modeshape>
+        <version.modeshape>5.3.0.Final</version.modeshape>
         <version.servlet.api>3.0.1</version.servlet.api>
         <version.weld.servlet>2.3.3.Final</version.weld.servlet>
         <version.jsf.api>2.0</version.jsf.api>
