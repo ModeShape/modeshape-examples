@@ -1,0 +1,18 @@
+<component>
+        <files>
+            <!-- file>
+                <source>target/run.jar</source>
+                <destName>bin/run.jar</destName>
+            </file -->
+
+            <file>
+                <source>src/main/resources/log4j.properties</source>
+                <destName>conf/log4j.conf</destName>
+            </file>
+            <file>
+                <source>src/main/resources/my-repository-config.json</source>
+                <destName>conf/my-repository-config.json</destName>
+            </file>
+
+        </files>
+</component>
