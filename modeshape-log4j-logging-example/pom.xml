@@ -17,7 +17,7 @@
     </description>
     <version>1.0-SNAPSHOT</version>
     <properties>
-        <version.modeshape>5.4.0.Final</version.modeshape>
+        <version.modeshape>5.4.1.Final</version.modeshape>
         <!--dependency versions-->
         <version.junit>4.11</version.junit>
     </properties>
